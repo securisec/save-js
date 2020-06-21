@@ -1,4 +1,4 @@
-name: Test and publish
+name: test
 
 on:
   - push
@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-node@v1.1.0
         with:
           node-version: ${{ matrix-node-version }}
+      - name: build
         run: |
           npm ci
           npm run build
