@@ -1,0 +1,49 @@
+name: Test and publish
+
+on:
+  - push
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 9
+      matrix:
+        os:
+          - macos-latest
+          - windows-latest
+          - ubuntu-latest
+        node-version:
+          - 10.x
+          - 12.x
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: ${{ matrix-node-version }}
+        run: |
+          npm ci
+          npm run build
+          npm run docs
+
+  publish:
+    needs: test
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: 10.x
+        run: |
+          npm ci
+          npm run build
+      - name: publish
+        uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          
+        

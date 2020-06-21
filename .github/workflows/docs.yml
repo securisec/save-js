@@ -1,0 +1,24 @@
+name: docs
+on:
+  - push
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build docs
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: 10.x
+        run: |
+          npm ci
+          npm run build
+          npm run docs
+      - name: publish docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: docs
+          enable_jekyll: false

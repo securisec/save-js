@@ -1,0 +1,36 @@
+{
+  "name": "save-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "./node_modules/.bin/rimraf dist",
+    "build": "npm run clean && ./node_modules/.bin/tsc",
+    "test": "./node_modules/.bin/tsc",
+    "docs": "./node_modules/.bin/typedoc --excludePrivate --out docs ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/securisec/save-js.git"
+  },
+  "keywords": [
+    "save",
+    "bookmarks"
+  ],
+  "author": "Hapsida @securisec",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/securisec/save-js/issues"
+  },
+  "homepage": "https://github.com/securisec/save-js#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.13",
+    "rimraf": "^3.0.2",
+    "typedoc": "^0.17.7",
+    "typescript": "^3.9.5"
+  }
+}
