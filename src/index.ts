@@ -5,6 +5,7 @@ import {
 	ApiExact,
 	LogJson,
 	Categories,
+	SearchAllResponse,
 } from './types/general';
 import {
 	BlogSearchResponse,
@@ -212,6 +213,17 @@ export class Save {
 		}): Promise<ToolSearchResponse> => {
 			return this.makeRequest('/api/tools', 'post', data);
 		},
+
+		/**
+		 *Search both tools and blogs indexes. Not as customizable as 
+		 individual index searches
+		 *
+		 * @param {{query: string}} data What to search for
+		 * @returns {Promise<SearchAllResponse>}
+		 */
+		searchAny: (data: {query: string}): Promise<SearchAllResponse> => {
+			return this.makeRequest('/api/search', 'post', data)
+		}
 	};
 
 	/**

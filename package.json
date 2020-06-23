@@ -1,6 +1,6 @@
 {
-  "name": "save-js",
-  "version": "1.0.0",
+  "name": "@securisec/save-js",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

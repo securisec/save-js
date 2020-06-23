@@ -36,3 +36,11 @@ export interface ApiResponse {
 export interface Categories {
 	[key: string]: string;
 }
+
+export interface SearchAllResponse {
+	data: {
+		tools: Array<Tool>;
+		blogs: Array<Blog>;
+	};
+	count: number;
+}
