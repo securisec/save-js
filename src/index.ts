@@ -20,6 +20,7 @@ import {
 	ToolSearchResponse,
 	ToolsUpdateBody,
 	ToolAdd,
+	ToolExportRes,
 } from './types/tools';
 
 export class Save {
@@ -221,9 +222,9 @@ export class Save {
 		 * @param {{query: string}} data What to search for
 		 * @returns {Promise<SearchAllResponse>}
 		 */
-		searchAny: (data: {query: string}): Promise<SearchAllResponse> => {
-			return this.makeRequest('/api/search', 'post', data)
-		}
+		searchAny: (data: { query: string }): Promise<SearchAllResponse> => {
+			return this.makeRequest('/api/search', 'post', data);
+		},
 	};
 
 	/**
@@ -266,13 +267,22 @@ export class Save {
 		categories: this.search.toolsCategories,
 
 		/**
-		 *Update the tools db index. ***This does not update an individual tool***
+		 *Import tools into the backend. ***This does not update an individual tool***
 		 *
 		 * @param {ToolsUpdateBody} data
 		 * @returns {Promise<string>}
 		 */
-		updateToolsIndex: (data: ToolsUpdateBody): Promise<string> => {
-			return this.makeRequest('/api/tools/update', 'put', data);
+		import: (data: ToolsUpdateBody): Promise<string> => {
+			return this.makeRequest('/api/tools/import', 'put', data);
+		},
+
+		/**
+		 *Export all tools as an importable dataset
+		 *
+		 * @returns {Promise<ToolExportRes>}
+		 */
+		export: (): Promise<ToolExportRes> => {
+			return this.makeRequest('/api/tools/export', 'get', {}, {});
 		},
 
 		/**
@@ -321,31 +331,82 @@ export class Save {
 		},
 	};
 
+	/**
+	 *Endpoints related to blogs
+	 *
+	 * @memberof Save
+	 */
 	public blogs = {
 		latest: (): Promise<BlogSearchResponse> => {
 			return this.makeRequest('/api/blogs', 'get');
 		},
 
-		searchBlogs: this.search.blogs,
+		/**
+		 * Mapped to search.blogs
+		 */
+		search: this.search.blogs,
 
-		deleteBlog: (data: { id: string }): Promise<string> => {
-			return this.makeRequest('/api/blog', 'delete', data);
+		/**
+		 *Delete a blog
+		 *
+		 * @param {{ id: string }} data ID of blog to delete
+		 * @returns {Promise<string>}
+		 */
+		delete: (data: { id: string }): Promise<string> => {
+			return this.makeRequest('/api/blogs', 'delete', data);
 		},
 
-		addBlog: (data: BlogAdd): Promise<string> => {
-			return this.makeRequest('/api/blog', 'put', data);
+		/**
+		 *Add a blog
+		 *
+		 * @param {BlogAdd} data
+		 * @returns {Promise<string>}
+		 */
+		add: (data: BlogAdd): Promise<string> => {
+			return this.makeRequest('/api/blogs', 'put', data);
 		},
 
-		updateBlog: (data: BlogAdd): Promise<string> => {
-			return this.makeRequest('/api/blog', 'put', data);
+		/**
+		 *Import blogs dataset
+		 *
+		 * @param {BlogAdd} data
+		 * @returns {Promise<string>}
+		 */
+		update: (data: BlogAdd): Promise<string> => {
+			return this.makeRequest('/api/blogs', 'put', data);
 		},
 
+		/**
+		 *Export blogs dataset
+		 *
+		 * @returns
+		 */
+		export: () => {
+			return this.makeRequest('/api/blogs/export', 'get');
+		},
+
+		/**
+		 * Mapped to search.blogsExact
+		 */
 		exact: this.search.blogsExact,
 
+		/**
+		 *Get all blogs
+		 *
+		 * @returns {Promise<BlogSearchResponse>}
+		 */
 		all: (): Promise<BlogSearchResponse> => {
 			return this.makeRequest('/api/blogs/all', 'get');
 		},
 
+		/**
+		 *Get all keywords and their counts for blogs
+		 *
+		 * @param {{
+		 * 			q: string;
+		 * 		}} query
+		 * @returns {(Promise<BlogSearchResponse | number>)}
+		 */
 		keywordsByCount: (query: {
 			q: string;
 		}): Promise<BlogSearchResponse | number> => {
@@ -354,8 +415,14 @@ export class Save {
 
 		categories: this.search.blogsCategories,
 
-		updateBlogsIndex: (data: BlogsUpdateBody): Promise<string> => {
-			return this.makeRequest('/api/blogs/update', 'put', data);
+		/**
+		 *Import blog dataset
+		 *
+		 * @param {BlogsUpdateBody} data
+		 * @returns {Promise<string>}
+		 */
+		import: (data: BlogsUpdateBody): Promise<string> => {
+			return this.makeRequest('/api/blogs/impoty', 'put', data);
 		},
 	};
 }

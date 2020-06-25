@@ -50,3 +50,9 @@ export interface ToolAdd {
 	url: string;
 	stars?: number;
 }
+
+export interface ToolExportRes {
+	data: Array<Tool>;
+	count: number;
+	time_created: number;
+}
