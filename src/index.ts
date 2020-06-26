@@ -162,8 +162,8 @@ export class Save {
 		 * @returns {Promise<BlogSearchCategoriesResponse>}
 		 */
 		blogsCategories: (data: {
-			fields: boolean;
-			limit: number;
+			fields?: boolean;
+			limit?: number;
 			filter: Array<string>;
 		}): Promise<BlogSearchCategoriesResponse> => {
 			return this.makeRequest('/api/blogs/categories', 'post', data);
@@ -190,8 +190,8 @@ export class Save {
 		 * @returns {Promise<ToolSearchCategoriesResponse>}
 		 */
 		toolsCategories: (data: {
-			fields: boolean;
-			limit: number;
+			fields?: boolean;
+			limit?: number;
 			filter: Array<string>;
 		}): Promise<ToolSearchCategoriesResponse> => {
 			return this.makeRequest('/api/tools/categories', 'post', data);
@@ -232,7 +232,7 @@ export class Save {
 	 *
 	 * @memberof Save
 	 */
-	public tool = {
+	public tools = {
 		/**
 		 * Mapped to search.toolsExact
 		 */
@@ -408,7 +408,7 @@ export class Save {
 		 * @returns {(Promise<BlogSearchResponse | number>)}
 		 */
 		keywordsByCount: (query: {
-			q: string;
+			q?: string;
 		}): Promise<BlogSearchResponse | number> => {
 			return this.makeRequest('/api/blogs/categories', 'get', query);
 		},
@@ -422,7 +422,7 @@ export class Save {
 		 * @returns {Promise<string>}
 		 */
 		import: (data: BlogsUpdateBody): Promise<string> => {
-			return this.makeRequest('/api/blogs/impoty', 'put', data);
+			return this.makeRequest('/api/blogs/import', 'put', data);
 		},
 	};
 }
