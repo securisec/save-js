@@ -1,4 +1,5 @@
 import Axios, { AxiosError } from 'axios';
+import { version } from "../package.json";
 import {
 	Api,
 	ApiVersion,
@@ -46,6 +47,7 @@ export class Save {
 				data: data,
 				auth: this.auth,
 				params: query,
+				headers: {'User-Agent': `save-js-${version}`}
 			})
 				.then((res) => {
 					resolve(res.data);
@@ -317,7 +319,7 @@ export class Save {
 		 * @returns {Promise<string>}
 		 */
 		addTool: (data: ToolAdd): Promise<string> => {
-			return this.makeRequest('/api/tool', 'put', data);
+			return this.makeRequest('/api/tools', 'put', data);
 		},
 
 		/**
@@ -327,7 +329,7 @@ export class Save {
 		 * @returns {Promise<string>}
 		 */
 		updateTool: (data: ToolAdd): Promise<string> => {
-			return this.makeRequest('/api/tool', 'put', data);
+			return this.makeRequest('/api/tools', 'put', data);
 		},
 	};
 
