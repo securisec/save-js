@@ -44,3 +44,11 @@ export interface SearchAllResponse {
 	};
 	count: number;
 }
+
+export interface WebhookResponse {
+	ts: number;
+	event: string;
+	index: string;
+	secret: string;
+	data: any;
+}

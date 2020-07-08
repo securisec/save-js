@@ -34,3 +34,9 @@ export interface BlogsUpdateBody {
 	count: number;
 	time_saved: number;
 }
+
+export interface BlogExportRes {
+	data: Array<Blog>;
+	count: number;
+	time_saved: number;
+}

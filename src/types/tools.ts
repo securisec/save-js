@@ -54,5 +54,5 @@ export interface ToolAdd {
 export interface ToolExportRes {
 	data: Array<Tool>;
 	count: number;
-	time_created: number;
+	time_saved: number;
 }

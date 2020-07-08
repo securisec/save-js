@@ -1,15 +1,16 @@
 {
   "name": "@securisec/save-js",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
     "clean": "./node_modules/.bin/rimraf dist",
     "build": "npm run clean && ./node_modules/.bin/tsc",
-    "test": "./node_modules/.bin/tsc",
+    "tsc": "./node_modules/.bin/tsc",
     "docs": "./node_modules/.bin/typedoc --excludePrivate --out docs ./src/index.ts",
-    "publish": "npm run build && npm publish"
+    "publish": "npm run build && npm publish",
+    "test": "npm run build && ./node_modules/.bin/mocha --timeout 5000"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,8 @@
   },
   "devDependencies": {
     "@types/node": "^14.0.13",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
     "rimraf": "^3.0.2",
     "typedoc": "^0.17.7",
     "typescript": "^3.9.5"
