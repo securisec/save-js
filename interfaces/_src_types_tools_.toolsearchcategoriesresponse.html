@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LogJson | @securisec/save-js</title>
+	<title>ToolSearchCategoriesResponse | @securisec/save-js</title>
 	<meta name="description" content="Documentation for @securisec/save-js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_types_general_.html">&quot;types/general&quot;</a>
+					<a href="../modules/_src_types_tools_.html">&quot;src/types/tools&quot;</a>
 				</li>
 				<li>
-					<a href="_types_general_.logjson.html">LogJson</a>
+					<a href="_src_types_tools_.toolsearchcategoriesresponse.html">ToolSearchCategoriesResponse</a>
 				</li>
 			</ul>
-			<h1>Interface LogJson</h1>
+			<h1>Interface ToolSearchCategoriesResponse</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">LogJson</span>
+						<a href="_src_types_tools_.toolsearchresponse.html" class="tsd-signature-type">ToolSearchResponse</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ToolSearchCategoriesResponse</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -84,11 +89,9 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_types_general_.logjson.html#ip" class="tsd-kind-icon">ip</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_types_general_.logjson.html#method" class="tsd-kind-icon">method</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_types_general_.logjson.html#path" class="tsd-kind-icon">path</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_types_general_.logjson.html#time" class="tsd-kind-icon">time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_types_general_.logjson.html#ua" class="tsd-kind-icon">ua</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_src_types_tools_.toolsearchcategoriesresponse.html#count" class="tsd-kind-icon">count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited tsd-is-external"><a href="_src_types_tools_.toolsearchcategoriesresponse.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_types_tools_.toolsearchcategoriesresponse.html#fields" class="tsd-kind-icon">fields</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,53 +99,36 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="ip" class="tsd-anchor"></a>
-					<h3>ip</h3>
-					<div class="tsd-signature tsd-kind-icon">ip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+					<a name="count" class="tsd-anchor"></a>
+					<h3>count</h3>
+					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_src_types_tools_.toolsearchresponse.html">ToolSearchResponse</a>.<a href="_src_types_tools_.toolsearchresponse.html#count">count</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/securisec/save-js/blob/f6e1839/src/types/general.ts#L25">types/general.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/types/general.ts#L32">src/types/general.ts:32</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited tsd-is-external">
+					<a name="data" class="tsd-anchor"></a>
+					<h3>data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_types_tools_.tool.html" class="tsd-signature-type">Tool</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_src_types_tools_.toolsearchresponse.html">ToolSearchResponse</a>.<a href="_src_types_tools_.toolsearchresponse.html#data">data</a></p>
+						<p>Overrides <a href="_src_types_general_.apiresponse.html">ApiResponse</a>.<a href="_src_types_general_.apiresponse.html#data">data</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/types/tools.ts#L30">src/types/tools.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="method" class="tsd-anchor"></a>
-					<h3>method</h3>
-					<div class="tsd-signature tsd-kind-icon">method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="fields" class="tsd-anchor"></a>
+					<h3>fields</h3>
+					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/securisec/save-js/blob/f6e1839/src/types/general.ts#L26">types/general.ts:26</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="path" class="tsd-anchor"></a>
-					<h3>path</h3>
-					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/securisec/save-js/blob/f6e1839/src/types/general.ts#L27">types/general.ts:27</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="time" class="tsd-anchor"></a>
-					<h3>time</h3>
-					<div class="tsd-signature tsd-kind-icon">time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/securisec/save-js/blob/f6e1839/src/types/general.ts#L24">types/general.ts:24</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="ua" class="tsd-anchor"></a>
-					<h3>ua</h3>
-					<div class="tsd-signature tsd-kind-icon">ua<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/securisec/save-js/blob/f6e1839/src/types/general.ts#L28">types/general.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/types/tools.ts#L34">src/types/tools.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -158,65 +144,62 @@
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
+						<a href="../modules/_src_index_.html">&quot;src/index&quot;</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
 					</li>
 					<li class=" tsd-kind-module tsd-is-external">
-						<a href="../modules/_types_blogs_.html">&quot;types/blogs&quot;</a>
-					</li>
-					<li class="current tsd-kind-module tsd-is-external">
-						<a href="../modules/_types_general_.html">&quot;types/general&quot;</a>
+						<a href="../modules/_src_types_blogs_.html">&quot;src/types/blogs&quot;</a>
 					</li>
 					<li class=" tsd-kind-module tsd-is-external">
-						<a href="../modules/_types_tools_.html">&quot;types/tools&quot;</a>
+						<a href="../modules/_src_types_general_.html">&quot;src/types/general&quot;</a>
+					</li>
+					<li class="current tsd-kind-module tsd-is-external">
+						<a href="../modules/_src_types_tools_.html">&quot;src/types/tools&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_types_general_.api.html" class="tsd-kind-icon">Api</a>
+						<a href="_src_types_tools_.similartool.html" class="tsd-kind-icon">Similar<wbr>Tool</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_types_general_.apiexact.html" class="tsd-kind-icon">Api<wbr>Exact</a>
+						<a href="_src_types_tools_.tool.html" class="tsd-kind-icon">Tool</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_types_general_.apiresponse.html" class="tsd-kind-icon">Api<wbr>Response</a>
+						<a href="_src_types_tools_.tooladd.html" class="tsd-kind-icon">Tool<wbr>Add</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_types_general_.apiversion.html" class="tsd-kind-icon">Api<wbr>Version</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_types_general_.categories.html" class="tsd-kind-icon">Categories</a>
+						<a href="_src_types_tools_.toolexportres.html" class="tsd-kind-icon">Tool<wbr>Export<wbr>Res</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_types_general_.logjson.html" class="tsd-kind-icon">Log<wbr>Json</a>
+						<a href="_src_types_tools_.toolsearchcategoriesresponse.html" class="tsd-kind-icon">Tool<wbr>Search<wbr>Categories<wbr>Response</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_types_general_.logjson.html#ip" class="tsd-kind-icon">ip</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+								<a href="_src_types_tools_.toolsearchcategoriesresponse.html#count" class="tsd-kind-icon">count</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited tsd-is-external">
+								<a href="_src_types_tools_.toolsearchcategoriesresponse.html#data" class="tsd-kind-icon">data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_types_general_.logjson.html#method" class="tsd-kind-icon">method</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_types_general_.logjson.html#path" class="tsd-kind-icon">path</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_types_general_.logjson.html#time" class="tsd-kind-icon">time</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_types_general_.logjson.html#ua" class="tsd-kind-icon">ua</a>
+								<a href="_src_types_tools_.toolsearchcategoriesresponse.html#fields" class="tsd-kind-icon">fields</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_types_general_.searchallresponse.html" class="tsd-kind-icon">Search<wbr>All<wbr>Response</a>
+						<a href="_src_types_tools_.toolsearchfields.html" class="tsd-kind-icon">Tool<wbr>Search<wbr>Fields</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="_src_types_tools_.toolsearchresponse.html" class="tsd-kind-icon">Tool<wbr>Search<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="_src_types_tools_.toolsupdatebody.html" class="tsd-kind-icon">Tools<wbr>Update<wbr>Body</a>
 					</li>
 				</ul>
 			</nav>
