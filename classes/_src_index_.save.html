@@ -91,6 +91,12 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#api" class="tsd-kind-icon">api</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#authchangepassword" class="tsd-kind-icon">auth<wbr>Change<wbr>Password</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#authcreateuser" class="tsd-kind-icon">auth<wbr>Create<wbr>User</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#authdeleteuser" class="tsd-kind-icon">auth<wbr>Delete<wbr>User</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#authgetapikey" class="tsd-kind-icon">auth<wbr>GetAPIKey</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#authgetallusers" class="tsd-kind-icon">auth<wbr>Get<wbr>All<wbr>Users</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#authresetapikey" class="tsd-kind-icon">auth<wbr>ResetAPIKey</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#backup" class="tsd-kind-icon">backup</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#blogsaddupdate" class="tsd-kind-icon">blogs<wbr>Add<wbr>Update</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_index_.save.html#blogsall" class="tsd-kind-icon">blogs<wbr>All</a></li>
@@ -127,22 +133,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Save<span class="tsd-signature-symbol">(</span>serverUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, auth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">""</span><span class="tsd-signature-symbol">; </span>username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">""</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_index_.save.html" class="tsd-signature-type">Save</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Save<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apikey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_index_.save.html" class="tsd-signature-type">Save</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L30">src/index.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L31">src/index.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>serverUrl: <span class="tsd-signature-type">string</span></h5>
+									<h5>host: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> auth: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">""</span><span class="tsd-signature-symbol">; </span>username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">""</span><span class="tsd-signature-symbol"> }</span></h5>
+									<h5>apikey: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_index_.save.html" class="tsd-signature-type">Save</a></h4>
@@ -162,7 +168,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L70">src/index.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L73">src/index.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -171,6 +177,176 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_types_general_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="authchangepassword" class="tsd-anchor"></a>
+					<h3>auth<wbr>Change<wbr>Password</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">auth<wbr>Change<wbr>Password<span class="tsd-signature-symbol">(</span>newPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L420">src/index.ts:420</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Change password</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>newPassword: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="authcreateuser" class="tsd-anchor"></a>
+					<h3>auth<wbr>Create<wbr>User</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">auth<wbr>Create<wbr>User<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>admin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_types_auth_.authcreateuserresp.html" class="tsd-signature-type">AuthCreateUserResp</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L395">src/index.ts:395</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new user</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>user: <span class="tsd-signature-symbol">{ </span>admin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>admin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_types_auth_.authcreateuserresp.html" class="tsd-signature-type">AuthCreateUserResp</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="authdeleteuser" class="tsd-anchor"></a>
+					<h3>auth<wbr>Delete<wbr>User</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">auth<wbr>Delete<wbr>User<span class="tsd-signature-symbol">(</span>username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L408">src/index.ts:408</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Delete a user</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>username: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="authgetapikey" class="tsd-anchor"></a>
+					<h3>auth<wbr>GetAPIKey</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">auth<wbr>GetAPIKey<span class="tsd-signature-symbol">(</span>username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_types_auth_.authresponse.html" class="tsd-signature-type">AuthResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L367">src/index.ts:367</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get API key information from authentication</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>username: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>password: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_types_auth_.authresponse.html" class="tsd-signature-type">AuthResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="authgetallusers" class="tsd-anchor"></a>
+					<h3>auth<wbr>Get<wbr>All<wbr>Users</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">auth<wbr>Get<wbr>All<wbr>Users<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_types_auth_.authallusers.html" class="tsd-signature-type">AuthAllUsers</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L382">src/index.ts:382</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get all the users</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_types_auth_.authallusers.html" class="tsd-signature-type">AuthAllUsers</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="authresetapikey" class="tsd-anchor"></a>
+					<h3>auth<wbr>ResetAPIKey</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">auth<wbr>ResetAPIKey<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>apikey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L431">src/index.ts:431</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Reset API Key</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>apikey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<blockquote>
+								<p>}</p>
+							</blockquote>
 						</li>
 					</ul>
 				</section>
@@ -184,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L101">src/index.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L104">src/index.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,7 +383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L311">src/index.ts:311</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L314">src/index.ts:314</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,7 +411,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L329">src/index.ts:329</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L332">src/index.ts:332</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -257,7 +433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L301">src/index.ts:301</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L304">src/index.ts:304</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,7 +471,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L140">src/index.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L143">src/index.ts:143</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -333,7 +509,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L320">src/index.ts:320</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L323">src/index.ts:323</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -355,7 +531,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L353">src/index.ts:353</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L356">src/index.ts:356</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,7 +559,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L341">src/index.ts:341</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L344">src/index.ts:344</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -416,7 +592,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L291">src/index.ts:291</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L294">src/index.ts:294</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_types_blogs_.blogsearchresponse.html" class="tsd-signature-type">BlogSearchResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -433,7 +609,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L126">src/index.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L129">src/index.ts:129</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -472,7 +648,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L154">src/index.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L157">src/index.ts:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -511,7 +687,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L112">src/index.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L115">src/index.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -551,7 +727,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L215">src/index.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L218">src/index.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -590,7 +766,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L91">src/index.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L94">src/index.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -628,7 +804,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L287">src/index.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L290">src/index.ts:290</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -656,7 +832,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L224">src/index.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L227">src/index.ts:227</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -678,7 +854,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L236">src/index.ts:236</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L239">src/index.ts:239</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -711,7 +887,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L277">src/index.ts:277</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L280">src/index.ts:280</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -749,7 +925,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L168">src/index.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L171">src/index.ts:171</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -782,7 +958,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L257">src/index.ts:257</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L260">src/index.ts:260</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -804,7 +980,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L248">src/index.ts:248</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L251">src/index.ts:251</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -832,7 +1008,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L267">src/index.ts:267</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L270">src/index.ts:270</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -860,7 +1036,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L200">src/index.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L203">src/index.ts:203</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -899,7 +1075,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L182">src/index.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L185">src/index.ts:185</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -938,7 +1114,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/securisec/save-js/blob/c5898a4/src/index.ts#L81">src/index.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/securisec/save-js/blob/0709b1d/src/index.ts#L84">src/index.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -970,6 +1146,9 @@
 						<span>Externals</span>
 					</li>
 					<li class=" tsd-kind-module tsd-is-external">
+						<a href="../modules/_src_types_auth_.html">&quot;src/types/auth&quot;</a>
+					</li>
+					<li class=" tsd-kind-module tsd-is-external">
 						<a href="../modules/_src_types_blogs_.html">&quot;src/types/blogs&quot;</a>
 					</li>
 					<li class=" tsd-kind-module tsd-is-external">
@@ -992,6 +1171,24 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_index_.save.html#api" class="tsd-kind-icon">api</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_index_.save.html#authchangepassword" class="tsd-kind-icon">auth<wbr>Change<wbr>Password</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_index_.save.html#authcreateuser" class="tsd-kind-icon">auth<wbr>Create<wbr>User</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_index_.save.html#authdeleteuser" class="tsd-kind-icon">auth<wbr>Delete<wbr>User</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_index_.save.html#authgetapikey" class="tsd-kind-icon">auth<wbr>GetAPIKey</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_index_.save.html#authgetallusers" class="tsd-kind-icon">auth<wbr>Get<wbr>All<wbr>Users</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_index_.save.html#authresetapikey" class="tsd-kind-icon">auth<wbr>ResetAPIKey</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_index_.save.html#backup" class="tsd-kind-icon">backup</a>
