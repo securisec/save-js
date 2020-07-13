@@ -1,15 +1,21 @@
 const { describe, it } = require('mocha');
 const { assert, expect } = require('chai');
 const { Save } = require('../dist/src/index');
-const { equal } = require('assert');
 
-const s = new Save('http://localhost:3001', {
-	username: 'saveuser',
-	password: 'savepass',
-});
+const host = 'http://localhost:3001';
+var s;
+new Save('http://localhost:3001', null)
+	.authGetAPIKey('saveuser', 'savepass')
+	.then(({ apikey }) => {
+		s = new Save(host, apikey);
+	});
 const test_url = 'https://github.com/securisec/chepy';
 
 describe('Tools API', () => {
+	it('', () => {
+		s
+	})
+	
 	it('toolsAll', () =>
 		s.toolsAll().then((res) => {
 			expect(res.count).greaterThan(1);

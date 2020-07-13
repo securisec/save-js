@@ -1,8 +1,8 @@
 # save-js
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/securisec/save-py/master/logo.png" width="50%">
 </p>
-
 
 ![](https://img.shields.io/npm/v/@securisec/save-js)
 ![test](https://github.com/securisec/save-js/workflows/test/badge.svg)
@@ -12,17 +12,19 @@
 This reposity contains the JS/TS library for **Save!**
 
 ## Install
+
 ```
 npm i @securisec/save-js
 ```
 
 ## Usage
+
 ```js
-import { Save } from 'save-js'
+import { Save } from 'save-js';
 
-const s = new Save('http://url-to-save-server', {username: 'username', password: 'password'})
+const s = new Save('http://url-to-save-server', 'yourapikey');
 
-s.toolsSearch({query: 'awesome'})
-    .then(res => console.log(res.data))
-    .catch(console.log)
+s.toolsSearch({ query: 'awesome' })
+	.then((res) => console.log(res.data))
+	.catch(console.log);
 ```

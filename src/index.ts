@@ -24,14 +24,15 @@ import {
 	ToolAdd,
 	ToolExportRes,
 } from './types/tools';
+import { AuthResponse, AuthAllUsers, AuthCreateUserResp } from './types/auth';
 
 export class Save {
-	private serverUrl: string;
-	private auth: { username: string; password: string };
+	private host: string;
+	private apikey: string | null;
 
-	constructor(serverUrl: string, auth?: { username: ''; password: '' }) {
-		this.serverUrl = serverUrl;
-		this.auth = auth || { username: '', password: '' };
+	constructor(host: string, apikey: string | null) {
+		this.host = host;
+		this.apikey = apikey;
 	}
 
 	private makeRequest(
@@ -43,12 +44,14 @@ export class Save {
 		return new Promise((resolve, reject) => {
 			Axios({
 				method: method,
-				baseURL: this.serverUrl,
+				baseURL: this.host,
 				url: endpoint,
 				data: data,
-				auth: this.auth,
 				params: query,
-				headers: { 'User-Agent': `save-js-${version}` },
+				headers: {
+					'User-Agent': `save-js-${version}`,
+					'x-save-apikey': this.apikey,
+				},
 			})
 				.then((res) => {
 					resolve(res.data);
@@ -352,5 +355,80 @@ export class Save {
 	 */
 	blogsImport = (data: BlogsUpdateBody): Promise<string> => {
 		return this.makeRequest('/api/v1/blogs/import', 'put', data);
+	};
+
+	/**
+	 *Get API key information from authentication
+	 *
+	 * @param {string} username
+	 * @param {string} password
+	 * @returns {Promise<AuthResponse>}
+	 */
+	authGetAPIKey = (
+		username: string,
+		password: string
+	): Promise<AuthResponse> => {
+		return this.makeRequest('/api/v1/auth', 'post', {
+			username: username,
+			password: password,
+		});
+	};
+
+	/**
+	 *Get all the users
+	 *
+	 * @returns {Promise<Array<AuthAllUsers>>}
+	 */
+	authGetAllUsers = (): Promise<Array<AuthAllUsers>> => {
+		return this.makeRequest('/api/v1/auth/user', 'get');
+	};
+
+	/**
+	 *Create a new user
+	 *
+	 * @param {{
+	 * 		username: string;
+	 * 		admin: boolean;
+	 * 	}} user
+	 * @returns {Promise<AuthCreateUserResp>}
+	 */
+	authCreateUser = (user: {
+		username: string;
+		admin: boolean;
+	}): Promise<AuthCreateUserResp> => {
+		return this.makeRequest('/api/v1/auth/user', 'post', user);
+	};
+
+	/**
+	 *Delete a user
+	 *
+	 * @param {string} username
+	 * @returns {Promise<string>}
+	 */
+	authDeleteUser = (username: string): Promise<string> => {
+		return this.makeRequest('/api/v1/auth/user', 'delete', {
+			username: username,
+		});
+	};
+
+	/**
+	 *Change password
+	 *
+	 * @param {string} newPassword
+	 * @returns {Promise<string>}
+	 */
+	authChangePassword = (newPassword: string): Promise<string> => {
+		return this.makeRequest('/api/v1/auth/user/password', 'post', {
+			password: newPassword,
+		});
+	};
+
+	/**
+	 *Reset API Key
+	 *
+	 * @returns {Promise<{ apikey: string }>}
+	 */
+	authResetAPIKey = (): Promise<{ apikey: string }> => {
+		return this.makeRequest('/api/v1/auth/user/apikey', 'post');
 	};
 }

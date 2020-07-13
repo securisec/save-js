@@ -4,10 +4,13 @@ const { Save } = require('../dist/src/index');
 const { resolve } = require('path');
 const { readFileSync } = require('fs');
 
-const s = new Save('http://localhost:3001', {
-	username: 'saveuser',
-	password: 'savepass',
-});
+var s;
+const host = 'http://localhost:3001';
+new Save(host, null)
+	.authGetAPIKey('saveuser', 'savepass')
+	.then(({ apikey }) => {
+		s = new Save(host, apikey);
+	});
 const test_url = 'https://github.com/securisec/chepy';
 
 const resolvePath = (index) => {
@@ -15,6 +18,10 @@ const resolvePath = (index) => {
 };
 
 describe('Import data', () => {
+	it('', () => {
+		s
+	})
+	
 	it('tools', () =>
 		s
 			.toolsImport(JSON.parse(readFileSync(resolvePath('tools'), 'utf-8')))
