@@ -1,43 +1,56 @@
 import { Tool } from './tools';
 import { Blog } from './blogs';
 
-export interface Api {
-	total: number;
-	tools: number;
-	blogs: number;
-	version: string;
+export interface ResponseConstant {
+	status: number;
+	message: any;
 }
 
-export interface ApiVersion {
-	name: string;
-	version: string;
-	author: string;
-	twitter: string;
+export interface Api extends ResponseConstant {
+	data: {
+		total: number;
+		tools: number;
+		blogs: number;
+		version: string;
+	};
 }
 
-export interface ApiExact {
+export interface ApiVersion extends ResponseConstant {
+	data: {
+		name: string;
+		version: string;
+		author: string;
+		twitter: string;
+	};
+}
+
+export interface ApiExact extends ResponseConstant {
 	index: string;
 	data: Tool | Blog;
 }
 
-export interface LogJson {
-	time: string;
-	ip: string;
-	method: string;
-	path: string;
-	ua: string;
+export interface LogJson extends ResponseConstant {
+	data: Array<{
+		time: string;
+		ip: string;
+		method: string;
+		path: string;
+		ua: string;
+	}>;
 }
 
-export interface ApiResponse {
+export interface ApiResponse extends ResponseConstant {
 	count: number;
 	data: any;
 }
 
-export interface Categories {
-	[key: string]: string;
+export interface Categories extends ResponseConstant {
+	data: {
+		[key: string]: string;
+	};
 }
 
-export interface SearchAllResponse {
+export interface SearchAllResponse extends ResponseConstant {
 	data: {
 		tools: Array<Tool>;
 		blogs: Array<Blog>;

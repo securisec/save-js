@@ -3,19 +3,14 @@ const { assert, expect } = require('chai');
 const { Save } = require('../dist/src/index');
 
 const host = 'http://localhost:3001';
-var s;
-new Save('http://localhost:3001', null)
-	.authGetAPIKey('saveuser', 'savepass')
-	.then(({ apikey }) => {
-		s = new Save(host, apikey);
-	});
+let apikey = process.env.TESTKEY
+if (!apikey) {
+	process.exit(2)
+}
+const s = new Save(host, apikey);
 const test_url = 'https://github.com/securisec/chepy';
 
 describe('Tools API', () => {
-	it('', () => {
-		s
-	})
-	
 	it('toolsAll', () =>
 		s.toolsAll().then((res) => {
 			expect(res.count).greaterThan(1);
@@ -24,23 +19,23 @@ describe('Tools API', () => {
 	it('toolsSearchCategories', () =>
 		s
 			.toolsSearchCategories({
-				filter: ['python', 'library', 'cyberchef'],
+				filter: ['vue'],
 				fields: true,
 			})
 			.then((res) => {
 				expect(res.count).greaterThan(0);
 				expect(res.fields.length).greaterThan(1);
-				assert.strictEqual(res.data[0].name, 'chepy');
+				expect(res.data[0].name).not.equal('')
 			}));
 
 	it('toolsCategoriesByCount', () =>
 		s.toolsCategoriesByCount({ q: 'python' }).then((res) => {
-			expect(res).greaterThan(1);
+			expect(res.data).greaterThan(1);
 		}));
 
 	it('toolsExact', () =>
 		s.toolsExact({ url: test_url }).then((res) => {
-			assert.strictEqual(res.name, 'chepy');
+			assert.strictEqual(res.data.name, 'chepy');
 		}));
 
 	it('toolsExport', () =>

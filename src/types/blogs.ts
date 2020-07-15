@@ -1,4 +1,4 @@
-import { ApiResponse } from './general';
+import { ApiResponse, ResponseConstant } from './general';
 
 export interface Blog {
 	excerpt: string;
@@ -8,6 +8,10 @@ export interface Blog {
 	resolved_title: string;
 	resolved_url: string;
 	keywords: Array<string>;
+}
+
+export interface BlogExactResponse extends ResponseConstant {
+	data: Blog;
 }
 
 export interface BlogSearchFields {

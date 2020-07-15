@@ -4,13 +4,12 @@ const { Save } = require('../dist/src/index');
 const { resolve } = require('path');
 const { readFileSync } = require('fs');
 
-var s;
 const host = 'http://localhost:3001';
-new Save(host, null)
-	.authGetAPIKey('saveuser', 'savepass')
-	.then(({ apikey }) => {
-		s = new Save(host, apikey);
-	});
+let apikey = process.env.TESTKEY
+if (!apikey) {
+	process.exit(2)
+}
+const s = new Save(host, apikey);
 const test_url = 'https://github.com/securisec/chepy';
 
 const resolvePath = (index) => {
@@ -18,49 +17,46 @@ const resolvePath = (index) => {
 };
 
 describe('Import data', () => {
-	it('', () => {
-		s
-	})
 	
 	it('tools', () =>
 		s
 			.toolsImport(JSON.parse(readFileSync(resolvePath('tools'), 'utf-8')))
 			.then((d) => {
-				expect(d).to.equal('Tools updated successfully');
+				expect(d.message).to.equal('Tools updated successfully');
 			}));
 
 	it('blogs', () =>
 		s
 			.blogsImport(JSON.parse(readFileSync(resolvePath('blogs'), 'utf-8')))
 			.then((d) => {
-				expect(d).to.equal('Blogs updated successfully');
+				expect(d.message).to.equal('Blogs updated successfully');
 			}));
 });
 
 describe('General tests', () => {
 	it('api', () =>
 		s.api().then((d) => {
-			expect(d.tools).to.be.greaterThan(0);
-			expect(d.blogs).to.be.greaterThan(0);
-			assert.equal(typeof d.version, 'string');
+			expect(d.data.tools).to.be.greaterThan(0);
+			expect(d.data.blogs).to.be.greaterThan(0);
+			assert.equal(typeof d.data.version, 'string');
 		}));
 
 	it('version', () =>
 		s.version().then((d) => {
-			expect(d.author).to.be.equal('Hapsida');
-			expect(d.twitter).to.equal('@securisec');
-			expect(d.name).to.equal('Save!');
+			expect(d.data.author).to.be.equal('Hapsida');
+			expect(d.data.twitter).to.equal('@securisec');
+			expect(d.data.name).to.equal('Save!');
 		}));
 
 	it('backup', () =>
 		s.backup().then((d) => {
-			expect(d.length).to.equal(2);
+			expect(d.status).to.equal(200);
 		}));
 
-	it('logs', () =>
-		s.logs().catch((err) => {
-			expect(err.status).equal(404);
-		}));
+	// it('logs', () =>
+	// 	s.logs().then((err) => {
+	// 		expect(err.response.status).equal(404);
+	// 	}));
 
 	it('searchAny', () =>
 		s.searchAny({ query: 'save' }).then((d) => {

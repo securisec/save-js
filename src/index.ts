@@ -7,22 +7,23 @@ import {
 	LogJson,
 	Categories,
 	SearchAllResponse,
+	ResponseConstant,
 } from './types/general';
 import {
 	BlogSearchResponse,
-	Blog,
 	BlogSearchCategoriesResponse,
 	BlogAdd,
 	BlogsUpdateBody,
 	BlogExportRes,
+	BlogExactResponse,
 } from './types/blogs';
 import {
-	Tool,
 	ToolSearchCategoriesResponse,
 	ToolSearchResponse,
 	ToolsUpdateBody,
 	ToolAdd,
 	ToolExportRes,
+	ToolExactResponse,
 } from './types/tools';
 import { AuthResponse, AuthAllUsers, AuthCreateUserResp } from './types/auth';
 
@@ -99,9 +100,9 @@ export class Save {
 	 *Endpoint that will trigger a backup operation for Save! server
 	 **requires auth**
 	 *
-	 * @returns {Promise<Array<string>>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	backup = (): Promise<Array<string>> => {
+	backup = (): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/backup', 'get');
 	};
 
@@ -110,9 +111,9 @@ export class Save {
 	 **requires auth**
 	 *
 	 * @param {{format: 'json'}} query Request logs as JSON
-	 * @returns {Promise<Array<LogJson>>} If JSON requested, array of Log objects
+	 * @returns {Promise<LogJson>} If JSON requested, array of Log objects
 	 */
-	logs = (query: { format: 'json' }): Promise<Array<LogJson>> => {
+	logs = (query: { format: 'json' }): Promise<LogJson> => {
 		return this.makeRequest('/api/v1/logs', 'get', {}, query);
 	};
 
@@ -138,9 +139,9 @@ export class Save {
 	 *Search for an exact blog
 	 *
 	 * @param {{ url: string }} data URL to search for
-	 * @returns {Promise<Blog>}
+	 * @returns {Promise<BlogExactResponse>}
 	 */
-	blogsExact = (data: { url: string }): Promise<Blog> => {
+	blogsExact = (data: { url: string }): Promise<BlogExactResponse> => {
 		return this.makeRequest('/api/v1/blogs/exact', 'post', data);
 	};
 
@@ -166,9 +167,9 @@ export class Save {
 	 *Search for an exact tool
 	 *
 	 * @param {{ url: string }} data
-	 * @returns {Promise<Tool>}
+	 * @returns {Promise<ToolExactResponse>}
 	 */
-	toolsExact = (data: { url: string }): Promise<Tool> => {
+	toolsExact = (data: { url: string }): Promise<ToolExactResponse> => {
 		return this.makeRequest('/api/v1/tools/exact', 'post', data);
 	};
 
@@ -246,9 +247,9 @@ export class Save {
 	 *Import tools into the backend. ***This does not update an individual tool***
 	 *
 	 * @param {ToolsUpdateBody} data
-	 * @returns {Promise<string>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	toolsImport = (data: ToolsUpdateBody): Promise<string> => {
+	toolsImport = (data: ToolsUpdateBody): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/tools/import', 'put', data);
 	};
 
@@ -275,9 +276,9 @@ export class Save {
 	 *Delete a tool by id
 	 *
 	 * @param {{ id: string }} data Id to tool to be deleted
-	 * @returns {Promise<string>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	toolsDelete = (data: { id: string }): Promise<string> => {
+	toolsDelete = (data: { id: string }): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/tools', 'delete', data);
 	};
 
@@ -285,9 +286,9 @@ export class Save {
 	 *Add a new tool. This function can also be used to update an existing tool
 	 *
 	 * @param {ToolAdd} data
-	 * @returns {Promise<string>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	toolsAddUpdate = (data: ToolAdd): Promise<string> => {
+	toolsAddUpdate = (data: ToolAdd): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/tools', 'put', data);
 	};
 
@@ -299,9 +300,9 @@ export class Save {
 	 *Delete a blog
 	 *
 	 * @param {{ id: string }} data ID of blog to delete
-	 * @returns {Promise<string>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	blogsDelete = (data: { id: string }): Promise<string> => {
+	blogsDelete = (data: { id: string }): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/blogs', 'delete', data);
 	};
 
@@ -309,9 +310,9 @@ export class Save {
 	 *Add a blog
 	 *
 	 * @param {BlogAdd} data
-	 * @returns {Promise<string>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	blogsAddUpdate = (data: BlogAdd): Promise<string> => {
+	blogsAddUpdate = (data: BlogAdd): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/blogs', 'put', data);
 	};
 
@@ -351,9 +352,9 @@ export class Save {
 	 *Import blog dataset
 	 *
 	 * @param {BlogsUpdateBody} data
-	 * @returns {Promise<string>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	blogsImport = (data: BlogsUpdateBody): Promise<string> => {
+	blogsImport = (data: BlogsUpdateBody): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/blogs/import', 'put', data);
 	};
 
@@ -403,9 +404,9 @@ export class Save {
 	 *Delete a user
 	 *
 	 * @param {string} username
-	 * @returns {Promise<string>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	authDeleteUser = (username: string): Promise<string> => {
+	authDeleteUser = (username: string): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/auth/user', 'delete', {
 			username: username,
 		});
@@ -415,9 +416,9 @@ export class Save {
 	 *Change password
 	 *
 	 * @param {string} newPassword
-	 * @returns {Promise<string>}
+	 * @returns {Promise<ResponseConstant>}
 	 */
-	authChangePassword = (newPassword: string): Promise<string> => {
+	authChangePassword = (newPassword: string): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/auth/user/password', 'post', {
 			password: newPassword,
 		});

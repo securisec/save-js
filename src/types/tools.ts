@@ -1,4 +1,4 @@
-import { ApiResponse } from './general';
+import { ApiResponse, ResponseConstant } from './general';
 
 export interface Tool {
 	id: string;
@@ -22,6 +22,10 @@ export interface SimilarTool {
 	url: string;
 }
 
+export interface ToolExactResponse extends ResponseConstant {
+	data: Tool;
+}
+
 export interface ToolSearchFields {
 	fields: 'name' | 'description' | 'categories' | 'similar';
 }
@@ -31,6 +35,7 @@ export interface ToolSearchResponse extends ApiResponse {
 }
 
 export interface ToolSearchCategoriesResponse extends ToolSearchResponse {
+	count: number
 	fields: Array<string>;
 }
 

@@ -2,15 +2,14 @@ const { describe, it } = require('mocha');
 const { assert, expect } = require('chai');
 const { Save } = require('../dist/src/index');
 
-var s
-new Save('http://localhost:3001', null).authGetAPIKey("saveuser", "savepass").then(({apikey}) => {
-	s = new Save('http://localhost:3001', apikey)
-});
+const host = 'http://localhost:3001';
+let apikey = process.env.TESTKEY
+if (!apikey) {
+	process.exit(2)
+}
+const s = new Save(host, apikey);
 
 describe('Blogs API', () => {
-	it('', () => {
-		s
-	})
 	
 	it('blogsAll', () =>
 		s.blogsAll().then((res) => {
@@ -29,7 +28,7 @@ describe('Blogs API', () => {
 				url: 'https://gist.github.com/s0md3v/78ca77b8bfc16649eaa81762039d62c7',
 			})
 			.then((res) => {
-				expect(res.resolved_title).include('concurrency');
+				expect(res.data.resolved_title).include('concurrency');
 			}));
 
 	it('blogsExport', () =>
@@ -41,8 +40,7 @@ describe('Blogs API', () => {
 
 	it('blogsKeywordsByCount', () =>
 		s.blogsKeywordsByCount({ q: 'vue' }).then((res) => {
-			console.log(res);
-			expect(res).greaterThan(1);
+			expect(res.data).greaterThan(1);
 		}));
 
 	it('blogsLatest', () =>
