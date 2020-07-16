@@ -378,9 +378,9 @@ export class Save {
 	/**
 	 *Get all the users
 	 *
-	 * @returns {Promise<Array<AuthAllUsers>>}
+	 * @returns {Promise<AuthAllUsers>}
 	 */
-	authGetAllUsers = (): Promise<Array<AuthAllUsers>> => {
+	authGetAllUsers = (): Promise<AuthAllUsers> => {
 		return this.makeRequest('/api/v1/auth/user', 'get');
 	};
 

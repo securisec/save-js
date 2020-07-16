@@ -13,15 +13,15 @@ describe('Auth API', () => {
 
   it('authGetAllUsers', () => {
     s.authGetAllUsers().then((res) => {
-      expect(res.length).equal(1)
+      expect(res.data.length).equal(1)
     })
   })
 
   it('authCreateUser', () => {
     s.authCreateUser({username:'newuser', admin: false}).then((res) => {
-      expect(res.password.length).equal(20)
-      expect(res.username).equal('newuser')
-      expect(res.admin).equal(false)
+      expect(res.data.password.length).equal(20)
+      expect(res.data.username).equal('newuser')
+      expect(res.data.admin).equal(false)
     })
   })
 
@@ -33,7 +33,7 @@ describe('Auth API', () => {
 
   it('authDeleteUser', () => {
     s.authDeleteUser('newuser').then((res) => {
-      expect(res).includes('OK')
+      expect(res.message).includes('OK')
     })
   })
 

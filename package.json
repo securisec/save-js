@@ -9,7 +9,7 @@
     "build": "npm run clean && ./node_modules/.bin/tsc",
     "tsc": "./node_modules/.bin/tsc",
     "docs": "./node_modules/.bin/typedoc --excludePrivate --out docs ./src/index.ts",
-    "test": "./node_modules/.bin/mocha --timeout 5000"
+    "test": "npm run build && ./node_modules/.bin/mocha --timeout 5000"
   },
   "repository": {
     "type": "git",
