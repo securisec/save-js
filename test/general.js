@@ -62,7 +62,7 @@ describe('General tests', () => {
 		s.searchAny({ query: 'save' }).then((d) => {
 			assert.equal(d.count, 20);
 			assert.notEqual(d.data.tools[0].name, '');
-			assert.notEqual(d.data.blogs[0].resolved_title, '');
+			assert.notEqual(d.data.blogs[0].title, '');
 		}));
 
 	it('searchExactAnyIndex', () =>

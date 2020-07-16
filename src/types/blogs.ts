@@ -7,6 +7,8 @@ export interface Blog {
 	objectID: string;
 	resolved_title: string;
 	resolved_url: string;
+	url: string
+	title: string
 	keywords: Array<string>;
 }
 
@@ -15,7 +17,7 @@ export interface BlogExactResponse extends ResponseConstant {
 }
 
 export interface BlogSearchFields {
-	fields: 'excerpt' | 'resolved_title' | 'resolved_url' | 'keywords';
+	fields: 'excerpt' | 'title' | 'url' | 'keywords';
 }
 
 export interface BlogSearchResponse extends ApiResponse {
@@ -29,8 +31,8 @@ export interface BlogSearchCategoriesResponse extends BlogSearchResponse {
 export interface BlogAdd {
 	keywords: Array<string>;
 	excerpt?: string;
-	resolved_url: string;
-	resolved_title?: string;
+	url: string;
+	title?: string;
 }
 
 export interface BlogsUpdateBody {

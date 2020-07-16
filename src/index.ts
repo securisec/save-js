@@ -123,14 +123,14 @@ export class Save {
 	 * @param {({
 	 * 			query: string;
 	 * 			limit?: number;
-	 * 			fields?: ['excerpt' | 'resolved_title' | 'resolved_url' | 'keywords'];
+	 * 			fields?: ['excerpt' | 'title' | 'url' | 'keywords'];
 	 * 		})} data
 	 * @returns {Promise<BlogSearchResponse>}
 	 */
 	blogsSearch = (data: {
 		query: string;
 		limit?: number;
-		fields?: ['excerpt' | 'resolved_title' | 'resolved_url' | 'keywords'];
+		fields?: ['excerpt' | 'title' | 'url' | 'keywords'];
 	}): Promise<BlogSearchResponse> => {
 		return this.makeRequest('/api/v1/blogs', 'post', data);
 	};

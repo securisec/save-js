@@ -28,14 +28,14 @@ describe('Blogs API', () => {
 				url: 'https://gist.github.com/s0md3v/78ca77b8bfc16649eaa81762039d62c7',
 			})
 			.then((res) => {
-				expect(res.data.resolved_title).include('concurrency');
+				expect(res.data.title).include('concurrency');
 			}));
 
 	it('blogsExport', () =>
 		s.blogsExport().then((res) => {
 			expect(res.time_saved).greaterThan(Date.now());
 			expect(res.count).greaterThan(1);
-			expect(res.data[0].resolved_url).includes('http');
+			expect(res.data[0].url).includes('http');
 		}));
 
 	it('blogsKeywordsByCount', () =>
@@ -53,7 +53,7 @@ describe('Blogs API', () => {
 			let data = res.data[0];
 			expect(data.excerpt).includes('concurrency');
 			assert.equal(
-				data.resolved_url,
+				data.url,
 				'https://gist.github.com/s0md3v/78ca77b8bfc16649eaa81762039d62c7'
 			);
 			assert.equal(res.count, 1);
@@ -69,11 +69,11 @@ describe('Blogs API', () => {
 	it('blogsAddUpdate', () =>
 		s
 			.blogsAddUpdate({
-				resolved_url:
+				url:
 					'https://gist.github.com/s0md3v/78ca77b8bfc16649eaa81762039d62c7',
 				keywords: ['go', 'con'],
 				excerpt: 'some data',
-				resolved_title: 'go concurrency',
+				title: 'go concurrency',
 			})
 			.then((res) => {
 				expect(res).not.equal('');
