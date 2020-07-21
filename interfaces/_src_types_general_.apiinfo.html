@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ApiVersion | @securisec/save-js</title>
+	<title>ApiInfo | @securisec/save-js</title>
 	<meta name="description" content="Documentation for @securisec/save-js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="../modules/_src_types_general_.html">&quot;src/types/general&quot;</a>
 				</li>
 				<li>
-					<a href="_src_types_general_.apiversion.html">ApiVersion</a>
+					<a href="_src_types_general_.apiinfo.html">ApiInfo</a>
 				</li>
 			</ul>
-			<h1>Interface ApiVersion</h1>
+			<h1>Interface ApiInfo</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +76,7 @@
 						<a href="_src_types_general_.responseconstant.html" class="tsd-signature-type">ResponseConstant</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">ApiVersion</span>
+								<span class="target">ApiInfo</span>
 							</li>
 						</ul>
 					</li>
@@ -89,9 +89,9 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_types_general_.apiversion.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_src_types_general_.apiversion.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_src_types_general_.apiversion.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_types_general_.apiinfo.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_src_types_general_.apiinfo.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_src_types_general_.apiinfo.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,10 +102,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>author<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>twitter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>author<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>blogs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>request_logging<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>tools<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>total<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>twitter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/securisec/save-js/blob/3e3a7b3/src/types/general.ts#L19">src/types/general.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/securisec/save-js/blob/4e1b06b/src/types/general.ts#L19">src/types/general.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -115,7 +115,19 @@
 								<h5>author<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 							</li>
 							<li class="tsd-parameter">
+								<h5>blogs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+							<li class="tsd-parameter">
 								<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>request_<wbr>logging<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>tools<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>total<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
 							</li>
 							<li class="tsd-parameter">
 								<h5>twitter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
@@ -133,7 +145,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_src_types_tools_.toolexactresponse.html">ToolExactResponse</a>.<a href="_src_types_tools_.toolexactresponse.html#message">message</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/securisec/save-js/blob/3e3a7b3/src/types/general.ts#L6">src/types/general.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/securisec/save-js/blob/4e1b06b/src/types/general.ts#L6">src/types/general.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -144,7 +156,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_src_types_tools_.toolexactresponse.html">ToolExactResponse</a>.<a href="_src_types_tools_.toolexactresponse.html#status">status</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/securisec/save-js/blob/3e3a7b3/src/types/general.ts#L5">src/types/general.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/securisec/save-js/blob/4e1b06b/src/types/general.ts#L5">src/types/general.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,27 +199,27 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="_src_types_general_.apiexact.html" class="tsd-kind-icon">Api<wbr>Exact</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_src_types_general_.apiresponse.html" class="tsd-kind-icon">Api<wbr>Response</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="_src_types_general_.apiversion.html" class="tsd-kind-icon">Api<wbr>Version</a>
+						<a href="_src_types_general_.apiinfo.html" class="tsd-kind-icon">Api<wbr>Info</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_src_types_general_.apiversion.html#data" class="tsd-kind-icon">data</a>
+								<a href="_src_types_general_.apiinfo.html#data" class="tsd-kind-icon">data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-								<a href="_src_types_general_.apiversion.html#message" class="tsd-kind-icon">message</a>
+								<a href="_src_types_general_.apiinfo.html#message" class="tsd-kind-icon">message</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-								<a href="_src_types_general_.apiversion.html#status" class="tsd-kind-icon">status</a>
+								<a href="_src_types_general_.apiinfo.html#status" class="tsd-kind-icon">status</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="_src_types_general_.apiresponse.html" class="tsd-kind-icon">Api<wbr>Response</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-external">
 						<a href="_src_types_general_.categories.html" class="tsd-kind-icon">Categories</a>
 					</li>
