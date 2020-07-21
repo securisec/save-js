@@ -3,14 +3,13 @@ const { assert, expect } = require('chai');
 const { Save } = require('../dist/src/index');
 
 const host = 'http://localhost:3001';
-let apikey = process.env.TESTKEY
+let apikey = process.env.TESTKEY;
 if (!apikey) {
-	process.exit(2)
+	process.exit(2);
 }
 const s = new Save(host, apikey);
 
 describe('Blogs API', () => {
-	
 	it('blogsAll', () =>
 		s.blogsAll().then((res) => {
 			expect(res.count).greaterThan(1);
@@ -30,6 +29,12 @@ describe('Blogs API', () => {
 			.then((res) => {
 				expect(res.data.title).include('concurrency');
 			}));
+
+	it('blogsRandom', () =>
+		s.blogsRandom().then((res) => {
+			expect(res.status).equal(200);
+			expect(res.data.title).not.equal('');
+		}));
 
 	it('blogsExport', () =>
 		s.blogsExport().then((res) => {
@@ -69,8 +74,7 @@ describe('Blogs API', () => {
 	it('blogsAddUpdate', () =>
 		s
 			.blogsAddUpdate({
-				url:
-					'https://gist.github.com/s0md3v/78ca77b8bfc16649eaa81762039d62c7',
+				url: 'https://gist.github.com/s0md3v/78ca77b8bfc16649eaa81762039d62c7',
 				keywords: ['go', 'con'],
 				excerpt: 'some data',
 				title: 'go concurrency',

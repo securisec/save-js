@@ -8,19 +8,23 @@ export interface ResponseConstant {
 
 export interface Api extends ResponseConstant {
 	data: {
-		total: number;
-		tools: number;
-		blogs: number;
+		name: string;
 		version: string;
+		author: string;
+		twitter: string;
 	};
 }
 
-export interface ApiVersion extends ResponseConstant {
+export interface ApiInfo extends ResponseConstant {
 	data: {
 		name: string;
 		version: string;
 		author: string;
 		twitter: string;
+		request_logging: boolean;
+		total: number;
+		tools: number;
+		blogs: number;
 	};
 }
 

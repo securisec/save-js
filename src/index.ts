@@ -2,12 +2,12 @@ import Axios, { AxiosError } from 'axios';
 import { version } from '../package.json';
 import {
 	Api,
-	ApiVersion,
 	ApiExact,
 	LogJson,
 	Categories,
 	SearchAllResponse,
 	ResponseConstant,
+	ApiInfo,
 } from './types/general';
 import {
 	BlogSearchResponse,
@@ -30,10 +30,12 @@ import { AuthResponse, AuthAllUsers, AuthCreateUserResp } from './types/auth';
 export class Save {
 	private host: string;
 	private apikey: string | null;
+	public userAgent: string;
 
 	constructor(host: string, apikey: string | null) {
 		this.host = host;
 		this.apikey = apikey;
+		this.userAgent = `save-js-${version}`;
 	}
 
 	private makeRequest(
@@ -50,7 +52,7 @@ export class Save {
 				data: data,
 				params: query,
 				headers: {
-					'User-Agent': `save-js-${version}`,
+					'User-Agent': this.userAgent,
 					'x-save-apikey': this.apikey,
 				},
 			})
@@ -80,10 +82,10 @@ export class Save {
 		 backend connections.
 		 **requires auth**
 		 *
-		 * @returns {Promise<ApiVersion>}
+		 * @returns {Promise<ApiInfo>}
 		 */
-	version = (): Promise<ApiVersion> => {
-		return this.makeRequest('/api/v1/version', 'get');
+	info = (): Promise<ApiInfo> => {
+		return this.makeRequest('/api/v1/info', 'get');
 	};
 
 	/**
@@ -146,6 +148,15 @@ export class Save {
 	};
 
 	/**
+	 *Get a random blog
+	 *
+	 * @returns {Promise<BlogExactResponse>}
+	 */
+	blogsRandom = (): Promise<BlogExactResponse> => {
+		return this.makeRequest('/api/v1/blogs/random', 'get');
+	};
+
+	/**
 	 *Search blogs by categories
 	 *
 	 * @param {{
@@ -171,6 +182,15 @@ export class Save {
 	 */
 	toolsExact = (data: { url: string }): Promise<ToolExactResponse> => {
 		return this.makeRequest('/api/v1/tools/exact', 'post', data);
+	};
+
+	/**
+	 *Get a random tool
+	 *
+	 * @returns {Promise<ToolExactResponse>}
+	 */
+	toolsRandom = (): Promise<ToolExactResponse> => {
+		return this.makeRequest('/api/v1/tools/random', 'get');
 	};
 
 	/**

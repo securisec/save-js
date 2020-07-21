@@ -5,9 +5,9 @@ const { resolve } = require('path');
 const { readFileSync } = require('fs');
 
 const host = 'http://localhost:3001';
-let apikey = process.env.TESTKEY
+let apikey = process.env.TESTKEY;
 if (!apikey) {
-	process.exit(2)
+	process.exit(2);
 }
 const s = new Save(host, apikey);
 const test_url = 'https://github.com/securisec/chepy';
@@ -17,7 +17,6 @@ const resolvePath = (index) => {
 };
 
 describe('Import data', () => {
-	
 	it('tools', () =>
 		s
 			.toolsImport(JSON.parse(readFileSync(resolvePath('tools'), 'utf-8')))
@@ -36,15 +35,19 @@ describe('Import data', () => {
 describe('General tests', () => {
 	it('api', () =>
 		s.api().then((d) => {
+			expect(d.data.author).to.be.equal('Hapsida');
+			expect(d.data.twitter).to.equal('@securisec');
 			expect(d.data.tools).to.be.greaterThan(0);
 			expect(d.data.blogs).to.be.greaterThan(0);
 			assert.equal(typeof d.data.version, 'string');
 		}));
 
-	it('version', () =>
-		s.version().then((d) => {
+	it('info', () =>
+		s.info().then((d) => {
 			expect(d.data.author).to.be.equal('Hapsida');
 			expect(d.data.twitter).to.equal('@securisec');
+			expect(d.data.tools).to.be.greaterThan(0);
+			expect(d.data.blogs).to.be.greaterThan(0);
 			expect(d.data.name).to.equal('Save!');
 		}));
 

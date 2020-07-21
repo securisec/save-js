@@ -3,9 +3,9 @@ const { assert, expect } = require('chai');
 const { Save } = require('../dist/src/index');
 
 const host = 'http://localhost:3001';
-let apikey = process.env.TESTKEY
+let apikey = process.env.TESTKEY;
 if (!apikey) {
-	process.exit(2)
+	process.exit(2);
 }
 const s = new Save(host, apikey);
 const test_url = 'https://github.com/securisec/chepy';
@@ -25,7 +25,7 @@ describe('Tools API', () => {
 			.then((res) => {
 				expect(res.count).greaterThan(0);
 				expect(res.fields.length).greaterThan(1);
-				expect(res.data[0].name).not.equal('')
+				expect(res.data[0].name).not.equal('');
 			}));
 
 	it('toolsCategoriesByCount', () =>
@@ -36,6 +36,12 @@ describe('Tools API', () => {
 	it('toolsExact', () =>
 		s.toolsExact({ url: test_url }).then((res) => {
 			assert.strictEqual(res.data.name, 'chepy');
+		}));
+
+	it('toolsRandom', () =>
+		s.toolsRandom().then((res) => {
+			expect(res.status).equal(200);
+			expect(res.data.name).not.equal('');
 		}));
 
 	it('toolsExport', () =>
