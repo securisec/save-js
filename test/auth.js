@@ -31,11 +31,11 @@ describe('Auth API', () => {
   //   })
   // })
 
-  it('authDeleteUser', () => {
-    s.authDeleteUser('newuser').then((res) => {
-      expect(res.message).includes('OK')
-    })
-  })
+  // it('authDeleteUser', () => {
+  //   s.authDeleteUser('newuser').then((res) => {
+  //     expect(res.message).includes('OK')
+  //   })
+  // })
 
   // it('authChangeAPIKey', () => {
   //   s.authResetAPIKey().then((res) => {

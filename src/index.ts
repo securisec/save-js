@@ -426,9 +426,9 @@ export class Save {
 	 * @param {string} username
 	 * @returns {Promise<ResponseConstant>}
 	 */
-	authDeleteUser = (username: string): Promise<ResponseConstant> => {
+	authDeleteUser = (user_id: string): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/auth/user', 'delete', {
-			username: username,
+			user_id: user_id,
 		});
 	};
 
@@ -451,5 +451,63 @@ export class Save {
 	 */
 	authResetAPIKey = (): Promise<{ apikey: string }> => {
 		return this.makeRequest('/api/v1/auth/user/apikey', 'post');
+	};
+
+	/**
+	 *Get all favorites
+	 *
+	 * @returns {Promise<ToolSearchResponse>}
+	 */
+	toolsGetFavorites = (): Promise<ToolSearchResponse> => {
+		return this.makeRequest('/api/v1/tools/favorites', 'get');
+	};
+
+	/**
+	 *Add a favorite
+	 *
+	 * @param {string} url A valid URL
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	toolsAddFavorite = (url: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/tools/favorites', 'post', { url: url });
+	};
+
+	/**
+	 *Delete a favorite
+	 *
+	 * @param {string} url A valid URL
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	toolsDeleteFavorite = (url: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/tools/favorites', 'delete', { url: url });
+	};
+
+	/**
+	 *Get all favorites
+	 *
+	 * @returns {Promise<ToolSearchResponse>}
+	 */
+	blogsGetFavorites = (): Promise<BlogSearchResponse> => {
+		return this.makeRequest('/api/v1/blogs/favorites', 'get');
+	};
+
+	/**
+	 *Add a favorite
+	 *
+	 * @param {string} url A valid URL
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	blogsAddFavorite = (url: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/blogs/favorites', 'post', { url: url });
+	};
+
+	/**
+	 *Delete a favorite
+	 *
+	 * @param {string} url A valid URL
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	blogsDeleteFavorite = (url: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/blogs/favorites', 'delete', { url: url });
 	};
 }

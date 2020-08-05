@@ -5,6 +5,7 @@ export interface AuthResponse extends ResponseConstant {
 		username: string;
 		apikey: string;
 		admin: boolean;
+		user_id: string;
 	};
 }
 
@@ -12,6 +13,7 @@ export interface AuthAllUsers extends ResponseConstant {
 	data: Array<{
 		username: string;
 		admin: boolean;
+		user_id: string;
 	}>;
 }
 

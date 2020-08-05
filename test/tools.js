@@ -38,11 +38,23 @@ describe('Tools API', () => {
 			assert.strictEqual(res.data.name, 'chepy');
 		}));
 
+	it('toolsAddFavorites', () => {
+		s.toolsAddFavorite(test_url).then((res) => {
+			assert.strictEqual(res.status, 200)
+		})
+	})
+
 	it('toolsRandom', () =>
 		s.toolsRandom().then((res) => {
 			expect(res.status).equal(200);
 			expect(res.data.name).not.equal('');
 		}));
+
+	it('toolsGetFavorites', () => {
+		s.toolsGetFavorites().then((res) => {
+			expect(res.count).greaterThan(0)
+		})
+	})
 
 	it('toolsExport', () =>
 		s.toolsExport().then((res) => {
@@ -56,6 +68,12 @@ describe('Tools API', () => {
 			assert.equal(res.count, 1);
 			expect(res.data[0].name).not.equal('');
 		}));
+
+	it('toolsDeleteFavorite', () => {
+		s.toolsDeleteFavorite(test_url).then((res) => {
+			assert.strictEqual(res.status, 200)
+		})
+	})
 
 	it('toolsSearch', () =>
 		s.toolsSearch({ query: 'chepy', limit: 1 }).then((res) => {
