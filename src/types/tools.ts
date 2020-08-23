@@ -1,15 +1,7 @@
 import { ApiResponse, ResponseConstant } from './general';
+import { Entry } from './blogs';
 
-export interface Tool {
-	id: string;
-	categories: Array<string>;
-	created_on: number;
-	description: string;
-	icon: string;
-	image: string;
-	name: string;
-	title: string;
-	url: string;
+export interface Tool extends Entry {
 	stars: number;
 	similar_tools: Array<SimilarTool>;
 }
@@ -27,7 +19,7 @@ export interface ToolExactResponse extends ResponseConstant {
 }
 
 export interface ToolSearchFields {
-	fields: 'name' | 'description' | 'categories' | 'similar';
+	fields: 'title' | 'keyword' | 'similar' | 'excerpt';
 }
 
 export interface ToolSearchResponse extends ApiResponse {
@@ -35,7 +27,7 @@ export interface ToolSearchResponse extends ApiResponse {
 }
 
 export interface ToolSearchCategoriesResponse extends ToolSearchResponse {
-	count: number
+	count: number;
 	fields: Array<string>;
 }
 
@@ -46,12 +38,10 @@ export interface ToolsUpdateBody {
 }
 
 export interface ToolAdd {
-	categories: Array<string>;
-	description: string;
-	icon?: string;
+	keywords: Array<string>;
+	excerpt: string;
 	image?: string;
-	name: string;
-	title?: string;
+	title: string;
 	url: string;
 	stars?: number;
 }

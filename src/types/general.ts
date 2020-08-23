@@ -1,5 +1,4 @@
-import { Tool } from './tools';
-import { Blog } from './blogs';
+import { Entry } from './blogs';
 
 export interface ResponseConstant {
 	status: number;
@@ -22,15 +21,15 @@ export interface ApiInfo extends ResponseConstant {
 		author: string;
 		twitter: string;
 		request_logging: boolean;
-		total: number;
-		tools: number;
-		blogs: number;
+		count: {
+			[key: string]: number;
+		};
 	};
 }
 
 export interface ApiExact extends ResponseConstant {
 	index: string;
-	data: Tool | Blog;
+	data: SimpleEntry;
 }
 
 export interface LogJson extends ResponseConstant {
@@ -48,17 +47,25 @@ export interface ApiResponse extends ResponseConstant {
 	data: any;
 }
 
-export interface Categories extends ResponseConstant {
+export interface CategoriesResponse extends ResponseConstant {
 	data: {
 		[key: string]: string;
 	};
 }
 
+export interface CategoriesSearchResponse extends OtherResponse {
+	fields?: Array<string>;
+	count: number;
+}
+
+export interface CategoriesSearch {
+	fields?: boolean;
+	limit?: number;
+	filter: Array<string>;
+}
+
 export interface SearchAllResponse extends ResponseConstant {
-	data: {
-		tools: Array<Tool>;
-		blogs: Array<Blog>;
-	};
+	data: Array<SimpleEntry>;
 	count: number;
 }
 
@@ -69,3 +76,37 @@ export interface WebhookResponse {
 	secret: string;
 	data: any;
 }
+
+export interface SimpleEntry {
+	id: string;
+	url: string;
+	index: string;
+	image: string;
+	excerpt: string;
+	title: string;
+	keywords: Array<string>;
+}
+
+export interface AllIndexesResponse extends ResponseConstant {
+	count: number;
+	data: {
+		[key: string]: number;
+	};
+}
+
+export interface OtherResponse extends ResponseConstant {
+	count: number;
+	data: Array<Entry>;
+}
+
+export interface OthersImportBody {
+	data: Array<Entry>;
+	count: number;
+	time_saved: number;
+}
+
+export interface OtherExactRes extends ResponseConstant {
+	data: Entry;
+}
+
+export interface OtherExportRes extends ResponseConstant, OtherResponse {}

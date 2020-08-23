@@ -23,9 +23,9 @@ describe('Blogs API', () => {
 
 	it('blogsExact', () =>
 		s
-			.blogsExact({
-				url: 'https://gist.github.com/s0md3v/78ca77b8bfc16649eaa81762039d62c7',
-			})
+			.blogsExact(
+				'https://gist.github.com/s0md3v/78ca77b8bfc16649eaa81762039d62c7'
+			)
 			.then((res) => {
 				expect(res.status).equal(200);
 			}));

@@ -4,10 +4,17 @@ import {
 	Api,
 	ApiExact,
 	LogJson,
-	Categories,
+	CategoriesResponse,
 	SearchAllResponse,
 	ResponseConstant,
 	ApiInfo,
+	AllIndexesResponse,
+	OtherResponse,
+	CategoriesSearch,
+	CategoriesSearchResponse,
+	OthersImportBody,
+	OtherExportRes,
+	OtherExactRes,
 } from './types/general';
 import {
 	BlogSearchResponse,
@@ -16,6 +23,7 @@ import {
 	BlogsUpdateBody,
 	BlogExportRes,
 	BlogExactResponse,
+	Entry,
 } from './types/blogs';
 import {
 	ToolSearchCategoriesResponse,
@@ -40,7 +48,7 @@ export class Save {
 
 	private makeRequest(
 		endpoint: string,
-		method: any,
+		method: 'get' | 'post' | 'delete' | 'put',
 		data?: object,
 		query?: object
 	): Promise<any> {
@@ -91,11 +99,11 @@ export class Save {
 	/**
 	 *Find an exact match on any index
 	 *
-	 * @param {{ url: string }} data The url to search for
+	 * @param {string } url The url to search for
 	 * @returns {Promise<ApiExact>}
 	 */
-	searchExactAnyIndex = (data: { url: string }): Promise<ApiExact> => {
-		return this.makeRequest('/api/v1/exact', 'post', data);
+	searchExactAnyIndex = (url: string): Promise<ApiExact> => {
+		return this.makeRequest('/api/v1/exact', 'post', { url: url });
 	};
 
 	/**
@@ -134,17 +142,17 @@ export class Save {
 		limit?: number;
 		fields?: ['excerpt' | 'title' | 'url' | 'keywords'];
 	}): Promise<BlogSearchResponse> => {
-		return this.makeRequest('/api/v1/blogs', 'post', data);
+		return this.makeRequest('/api/v1/index/blogs', 'post', data);
 	};
 
 	/**
 	 *Search for an exact blog
 	 *
-	 * @param {{ url: string }} data URL to search for
+	 * @param {string} url URL to search for
 	 * @returns {Promise<BlogExactResponse>}
 	 */
-	blogsExact = (data: { url: string }): Promise<BlogExactResponse> => {
-		return this.makeRequest('/api/v1/blogs/exact', 'post', data);
+	blogsExact = (url: string): Promise<BlogExactResponse> => {
+		return this.makeRequest('/api/v1/index/blogs/exact', 'post', { url: url });
 	};
 
 	/**
@@ -153,7 +161,7 @@ export class Save {
 	 * @returns {Promise<BlogExactResponse>}
 	 */
 	blogsRandom = (): Promise<BlogExactResponse> => {
-		return this.makeRequest('/api/v1/blogs/random', 'get');
+		return this.makeRequest('/api/v1/index/blogs/random', 'get');
 	};
 
 	/**
@@ -166,22 +174,20 @@ export class Save {
 	 * 		}} data
 	 * @returns {Promise<BlogSearchCategoriesResponse>}
 	 */
-	blogsSearchCategories = (data: {
-		fields?: boolean;
-		limit?: number;
-		filter: Array<string>;
-	}): Promise<BlogSearchCategoriesResponse> => {
-		return this.makeRequest('/api/v1/blogs/categories', 'post', data);
+	blogsSearchCategories = (
+		data: CategoriesSearch
+	): Promise<BlogSearchCategoriesResponse> => {
+		return this.makeRequest('/api/v1/index/blogs/categories', 'post', data);
 	};
 
 	/**
 	 *Search for an exact tool
 	 *
-	 * @param {{ url: string }} data
+	 * @param {string} url
 	 * @returns {Promise<ToolExactResponse>}
 	 */
-	toolsExact = (data: { url: string }): Promise<ToolExactResponse> => {
-		return this.makeRequest('/api/v1/tools/exact', 'post', data);
+	toolsExact = (url: string): Promise<ToolExactResponse> => {
+		return this.makeRequest('/api/v1/index/tools/exact', 'post', { url: url });
 	};
 
 	/**
@@ -190,7 +196,7 @@ export class Save {
 	 * @returns {Promise<ToolExactResponse>}
 	 */
 	toolsRandom = (): Promise<ToolExactResponse> => {
-		return this.makeRequest('/api/v1/tools/random', 'get');
+		return this.makeRequest('/api/v1/index/tools/random', 'get');
 	};
 
 	/**
@@ -203,12 +209,10 @@ export class Save {
 	 * 		}} data
 	 * @returns {Promise<ToolSearchCategoriesResponse>}
 	 */
-	toolsSearchCategories = (data: {
-		fields?: boolean;
-		limit?: number;
-		filter: Array<string>;
-	}): Promise<ToolSearchCategoriesResponse> => {
-		return this.makeRequest('/api/v1/tools/categories', 'post', data);
+	toolsSearchCategories = (
+		data: CategoriesSearch
+	): Promise<ToolSearchCategoriesResponse> => {
+		return this.makeRequest('/api/v1/index/tools/categories', 'post', data);
 	};
 
 	/**
@@ -226,18 +230,18 @@ export class Save {
 		limit?: number;
 		fields?: ['name' | 'description' | 'categories' | 'similar'];
 	}): Promise<ToolSearchResponse> => {
-		return this.makeRequest('/api/v1/tools', 'post', data);
+		return this.makeRequest('/api/v1/index/tools', 'post', data);
 	};
 
 	/**
 		 *Search both tools and blogs indexes. Not as customizable as 
 		 individual index searches
 		 *
-		 * @param {{query: string}} data What to search for
+		 * @param {string} query What to search for
 		 * @returns {Promise<SearchAllResponse>}
 		 */
-	searchAny = (data: { query: string }): Promise<SearchAllResponse> => {
-		return this.makeRequest('/api/v1/search', 'post', data);
+	searchAny = (query: string): Promise<SearchAllResponse> => {
+		return this.makeRequest('/api/v1/search', 'post', { query: query });
 	};
 
 	/**
@@ -246,7 +250,7 @@ export class Save {
 	 * @returns {Promise<ToolSearchResponse>}
 	 */
 	toolsAll = (): Promise<ToolSearchResponse | number> => {
-		return this.makeRequest('/api/v1/tools/all', 'get');
+		return this.makeRequest('/api/v1/index/tools/all', 'get');
 	};
 
 	/**
@@ -255,12 +259,12 @@ export class Save {
 	 * @param {{
 	 * 			q?: string;
 	 * 		}} query
-	 * @returns {(Promise<Categories | number>)}
+	 * @returns {(Promise<CategoriesResponse | number>)}
 	 */
 	toolsCategoriesByCount = (query: {
 		q?: string;
-	}): Promise<Categories | number> => {
-		return this.makeRequest('/api/v1/tools/categories', 'get', {}, query);
+	}): Promise<CategoriesResponse | number> => {
+		return this.makeRequest('/api/v1/index/tools/categories', 'get', {}, query);
 	};
 
 	/**
@@ -270,7 +274,7 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	toolsImport = (data: ToolsUpdateBody): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/tools/import', 'put', data);
+		return this.makeRequest('/api/v1/index/tools/import', 'put', data);
 	};
 
 	/**
@@ -279,7 +283,7 @@ export class Save {
 	 * @returns {Promise<ToolExportRes>}
 	 */
 	toolsExport = (): Promise<ToolExportRes> => {
-		return this.makeRequest('/api/v1/tools/export', 'get', {}, {});
+		return this.makeRequest('/api/v1/index/tools/export', 'get', {}, {});
 	};
 
 	/**
@@ -289,7 +293,7 @@ export class Save {
 	 * @returns {Promise<ToolSearchResponse>}
 	 */
 	toolsLatest = (query?: { limit: number }): Promise<ToolSearchResponse> => {
-		return this.makeRequest('/api/v1/tools', 'get', {}, query);
+		return this.makeRequest('/api/v1/index/tools', 'get', {}, query);
 	};
 
 	/**
@@ -299,21 +303,29 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	toolsDelete = (data: { id: string }): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/tools', 'delete', data);
+		return this.makeRequest('/api/v1/index/tools', 'delete', data);
 	};
 
 	/**
 	 *Add a new tool. This function can also be used to update an existing tool
 	 *
 	 * @param {ToolAdd} data
+	 * @param {boolean} refresh Refresh the data in addition to updating
 	 * @returns {Promise<ResponseConstant>}
 	 */
-	toolsAddUpdate = (data: ToolAdd): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/tools', 'put', data);
+	toolsAddUpdate = (
+		data: ToolAdd,
+		refresh: boolean = false
+	): Promise<ResponseConstant> => {
+		let query = {};
+		if (refresh) {
+			query = { refresh: 'true' };
+		}
+		return this.makeRequest('/api/v1/index/tools', 'put', data, query);
 	};
 
 	blogsLatest = (): Promise<BlogSearchResponse> => {
-		return this.makeRequest('/api/v1/blogs', 'get');
+		return this.makeRequest('/api/v1/index/blogs', 'get');
 	};
 
 	/**
@@ -323,7 +335,7 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	blogsDelete = (data: { id: string }): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/blogs', 'delete', data);
+		return this.makeRequest('/api/v1/index/blogs', 'delete', data);
 	};
 
 	/**
@@ -333,7 +345,7 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	blogsAddUpdate = (data: BlogAdd): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/blogs', 'put', data);
+		return this.makeRequest('/api/v1/index/blogs', 'put', data);
 	};
 
 	/**
@@ -342,7 +354,7 @@ export class Save {
 	 * @returns {Promise<BlogExportRes>}
 	 */
 	blogsExport = (): Promise<BlogExportRes> => {
-		return this.makeRequest('/api/v1/blogs/export', 'get');
+		return this.makeRequest('/api/v1/index/blogs/export', 'get');
 	};
 
 	/**
@@ -351,7 +363,7 @@ export class Save {
 	 * @returns {Promise<BlogSearchResponse>}
 	 */
 	blogsAll = (): Promise<BlogSearchResponse> => {
-		return this.makeRequest('/api/v1/blogs/all', 'get');
+		return this.makeRequest('/api/v1/index/blogs/all', 'get');
 	};
 
 	/**
@@ -365,7 +377,7 @@ export class Save {
 	blogsKeywordsByCount = (query: {
 		q?: string;
 	}): Promise<BlogSearchResponse | number> => {
-		return this.makeRequest('/api/v1/blogs/categories', 'get', {}, query);
+		return this.makeRequest('/api/v1/index/blogs/categories', 'get', {}, query);
 	};
 
 	/**
@@ -375,7 +387,7 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	blogsImport = (data: BlogsUpdateBody): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/blogs/import', 'put', data);
+		return this.makeRequest('/api/v1/index/blogs/import', 'put', data);
 	};
 
 	/**
@@ -459,7 +471,7 @@ export class Save {
 	 * @returns {Promise<ToolSearchResponse>}
 	 */
 	toolsGetFavorites = (): Promise<ToolSearchResponse> => {
-		return this.makeRequest('/api/v1/tools/favorites', 'get');
+		return this.makeRequest('/api/v1/index/tools/favorites', 'get');
 	};
 
 	/**
@@ -469,7 +481,9 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	toolsAddFavorite = (url: string): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/tools/favorites', 'post', { url: url });
+		return this.makeRequest('/api/v1/index/tools/favorites', 'post', {
+			url: url,
+		});
 	};
 
 	/**
@@ -479,7 +493,9 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	toolsDeleteFavorite = (url: string): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/tools/favorites', 'delete', { url: url });
+		return this.makeRequest('/api/v1/index/tools/favorites', 'delete', {
+			url: url,
+		});
 	};
 
 	/**
@@ -488,7 +504,7 @@ export class Save {
 	 * @returns {Promise<ToolSearchResponse>}
 	 */
 	blogsGetFavorites = (): Promise<BlogSearchResponse> => {
-		return this.makeRequest('/api/v1/blogs/favorites', 'get');
+		return this.makeRequest('/api/v1/index/blogs/favorites', 'get');
 	};
 
 	/**
@@ -498,7 +514,9 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	blogsAddFavorite = (url: string): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/blogs/favorites', 'post', { url: url });
+		return this.makeRequest('/api/v1/index/blogs/favorites', 'post', {
+			url: url,
+		});
 	};
 
 	/**
@@ -508,6 +526,221 @@ export class Save {
 	 * @returns {Promise<ResponseConstant>}
 	 */
 	blogsDeleteFavorite = (url: string): Promise<ResponseConstant> => {
-		return this.makeRequest('/api/v1/blogs/favorites', 'delete', { url: url });
+		return this.makeRequest('/api/v1/index/blogs/favorites', 'delete', {
+			url: url,
+		});
+	};
+
+	/**
+	 *Get all indexes
+	 *
+	 * @returns {Promise<AllIndexesResponse>}
+	 */
+	getAllIndexes = (): Promise<AllIndexesResponse> => {
+		return this.makeRequest('/api/v1/index', 'get');
+	};
+
+	/**
+	 *Add a new index
+	 *
+	 * @param {string} index Name of index
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	addIndex = (index: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index', 'post', { index: index });
+	};
+
+	/**
+	 *Delete an index
+	 *
+	 * @param {string} index Name of index
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	deleteIndex = (index: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index', 'delete', { index: index });
+	};
+
+	/**
+	 *Add an entry to specified index
+	 *
+	 * @param {string} index Name of index
+	 * @param {Entry} entry Entry data
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	otherAddUpdate = (index: string, entry: Entry): Promise<ResponseConstant> => {
+		let endpoint = `/api/v1/index/${index}`;
+		return this.makeRequest(endpoint, 'put', entry);
+	};
+
+	/**
+	 *Search specified index
+	 *
+	 * @param {string} index Index name
+	 * @param {({
+	 * 			query: string;
+	 * 			limit?: number;
+	 * 			fields?: ['entry_keywords' | 'title' | 'excerpt' | 'url'];
+	 * 		})} query
+	 * @returns {Promise<OtherResponse>}
+	 */
+	otherSearch = (
+		index: string,
+		query: {
+			query: string;
+			limit?: number;
+			fields?: ['entry_keywords' | 'title' | 'excerpt' | 'url'];
+		}
+	): Promise<OtherResponse> => {
+		let endpoint = `/api/v1/index/${index}`;
+		return this.makeRequest(endpoint, 'post', query);
+	};
+
+	/**
+	 *Get latest from specified index
+	 *
+	 * @param {string} index Index name
+	 * @returns {Promise<OtherResponse>}
+	 */
+	otherLatest = (index: string): Promise<OtherResponse> => {
+		let endpoint = `/api/v1/index/${index}`;
+		return this.makeRequest(endpoint, 'get');
+	};
+
+	/**
+	 *Delete an entry from specified index
+	 *
+	 * @param {string} index Index name
+	 * @param {string} id Id to delete
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	otherDelete = (index: string, id: string): Promise<ResponseConstant> => {
+		let endpoint = `/api/v1/index/${index}`;
+		return this.makeRequest(endpoint, 'delete', { id: id });
+	};
+
+	/**
+	 *Get all entries from specified index
+	 *
+	 * @param {string} index Index name
+	 * @returns {Promise<OtherResponse>}
+	 */
+	otherAllEntries = (index: string): Promise<OtherResponse> => {
+		let endpoint = `/api/v1/index/${index}/all`;
+		return this.makeRequest(endpoint, 'get');
+	};
+
+	/**
+	 *Get all keywords for specified index
+	 *
+	 * @param {string} index
+	 * @returns {Promise<CategoriesResponse>}
+	 */
+	otherGetCategories = (index: string): Promise<CategoriesResponse> => {
+		let endpoint = `/api/v1/index/${index}/categories`;
+		return this.makeRequest(endpoint, 'get');
+	};
+
+	/**
+	 *Search specified index by keywords
+	 *
+	 * @param {string} index Index name
+	 * @param {CategoriesSearch} body
+	 * @returns {Promise<CategoriesSearchResponse>}
+	 */
+	otherSearchCategories = (
+		index: string,
+		body: CategoriesSearch
+	): Promise<CategoriesSearchResponse> => {
+		let endpoint = `/api/v1/index/${index}/categories`;
+		return this.makeRequest(endpoint, 'post', body);
+	};
+
+	/**
+	 *Import data to specified index
+	 *
+	 * @param {string} index Index name
+	 * @param {OthersImportBody} data
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	otherImport = (
+		index: string,
+		data: OthersImportBody
+	): Promise<ResponseConstant> => {
+		let endpoint = `/api/v1/index/${index}/import`;
+		return this.makeRequest(endpoint, 'put', data);
+	};
+
+	/**
+	 *Export all entries from specified index
+	 *
+	 * @param {string} index Index name
+	 * @returns {Promise<OtherExportRes>}
+	 */
+	otherExport = (index: string): Promise<OtherExportRes> => {
+		let endpoint = `/api/v1/index/${index}/export`;
+		return this.makeRequest(endpoint, 'get');
+	};
+
+	/**
+	 *Get all favorites from spcified index
+	 *
+	 * @param {string} index Index name
+	 * @returns {Promise<OtherResponse>}
+	 */
+	otherGetFavorite = (index: string): Promise<OtherResponse> => {
+		let endpoint = `/api/v1/index/${index}/favorites`;
+		return this.makeRequest(endpoint, 'get');
+	};
+
+	/**
+	 *Add a favorite to specified index
+	 *
+	 * @param {string} index Index name
+	 * @param {string} url URL to add
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	otherAddFavorite = (
+		index: string,
+		url: string
+	): Promise<ResponseConstant> => {
+		let endpoint = `/api/v1/index/${index}/favorites`;
+		return this.makeRequest(endpoint, 'post', { url: url });
+	};
+
+	/**
+	 *Delete a favorite from specified index
+	 *
+	 * @param {string} index Index name
+	 * @param {string} url URL to delete
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	otherDeleteFavorite = (
+		index: string,
+		url: string
+	): Promise<ResponseConstant> => {
+		let endpoint = `/api/v1/index/${index}/favorites`;
+		return this.makeRequest(endpoint, 'delete', { url: url });
+	};
+
+	/**
+	 *Check and get exact url from specified index
+	 *
+	 * @param {string} index Index name
+	 * @param {string} url URL to add
+	 * @returns {Promise<OtherExactRes>}
+	 */
+	otherExact = (index: string, url: string): Promise<OtherExactRes> => {
+		let endpoint = `/api/v1/index/${index}/exact`;
+		return this.makeRequest(endpoint, 'post', { url: url });
+	};
+
+	/**
+	 *Basic HEAD based health check for a url
+	 *
+	 * @param {string} url URL to check
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	miscHealthCheck = (url: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/misc/health', 'post', { url: url });
 	};
 }

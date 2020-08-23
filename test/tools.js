@@ -34,8 +34,8 @@ describe('Tools API', () => {
 		}));
 
 	it('toolsExact', () =>
-		s.toolsExact({ url: test_url }).then((res) => {
-			assert.strictEqual(res.data.name, 'chepy');
+		s.toolsExact(test_url).then((res) => {
+			assert.strictEqual(res.data.title, 'chepy');
 		}));
 
 	it('toolsAddFavorites', () => {
@@ -78,7 +78,7 @@ describe('Tools API', () => {
 	it('toolsSearch', () =>
 		s.toolsSearch({ query: 'chepy', limit: 1 }).then((res) => {
 			assert.equal(res.count, 1);
-			assert.equal(res.data[0].name, 'chepy');
+			assert.notEqual(res.data[0].title, '');
 		}));
 
 	it('toolsDelete', () =>
@@ -91,9 +91,9 @@ describe('Tools API', () => {
 	it('toolsAddUpdate', () =>
 		s
 			.toolsAddUpdate({
-				name: 'chepy',
+				title: 'chepy',
 				url: 'https://github.com/securisec/chepy',
-				categories: ['chepy', 'python'],
+				keywords: ['chepy', 'python'],
 			})
 			.then((res) => {
 				expect(res).not.equal('');

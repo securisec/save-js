@@ -1,27 +1,25 @@
 import { ApiResponse, ResponseConstant } from './general';
 
-export interface Blog {
+export interface Entry {
 	excerpt: string;
 	image: string;
 	id: string;
-	objectID: string;
-	resolved_title: string;
-	resolved_url: string;
-	url: string
-	title: string
+	url: string;
+	title: string;
+	created_on: number;
 	keywords: Array<string>;
 }
 
 export interface BlogExactResponse extends ResponseConstant {
-	data: Blog;
+	data: Entry;
 }
 
 export interface BlogSearchFields {
-	fields: 'excerpt' | 'title' | 'url' | 'keywords';
+	fields: 'keyword' | 'title' | 'excerpt' | 'url';
 }
 
 export interface BlogSearchResponse extends ApiResponse {
-	data: Array<Blog>;
+	data: Array<Entry>;
 }
 
 export interface BlogSearchCategoriesResponse extends BlogSearchResponse {
@@ -36,13 +34,13 @@ export interface BlogAdd {
 }
 
 export interface BlogsUpdateBody {
-	data: Array<Blog>;
+	data: Array<Entry>;
 	count: number;
 	time_saved: number;
 }
 
 export interface BlogExportRes {
-	data: Array<Blog>;
+	data: Array<Entry>;
 	count: number;
 	time_saved: number;
 }

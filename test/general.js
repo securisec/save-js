@@ -46,8 +46,8 @@ describe('General tests', () => {
 		s.info().then((d) => {
 			expect(d.data.author).to.be.equal('Hapsida');
 			expect(d.data.twitter).to.equal('@securisec');
-			expect(d.data.tools).to.be.greaterThan(0);
-			expect(d.data.blogs).to.be.greaterThan(0);
+			expect(d.data.count['tools']).to.be.greaterThan(0);
+			expect(d.data.count['blogs']).to.be.greaterThan(0);
 			expect(d.data.name).to.equal('Save!');
 		}));
 
@@ -62,16 +62,16 @@ describe('General tests', () => {
 	// 	}));
 
 	it('searchAny', () =>
-		s.searchAny({ query: 'save' }).then((d) => {
-			assert.equal(d.count, 20);
-			assert.notEqual(d.data.tools[0].name, '');
-			assert.notEqual(d.data.blogs[0].title, '');
+		s.searchAny('save').then((d) => {
+			assert.notEqual(d.count, 0);
+			assert.notEqual(d.data[0].excerpt, '');
+			assert.notEqual(d.data[0].title, '');
 		}));
 
 	it('searchExactAnyIndex', () =>
-		s.searchExactAnyIndex({ url: test_url }).then((d) => {
-			expect(d.index).equal('tools');
-			expect(d.data.name).equal('chepy');
-			expect(d.data.categories.length).greaterThan(0);
+		s.searchExactAnyIndex(test_url).then((d) => {
+			expect(d.data.index).equal('tools');
+			expect(d.data.title).equal('chepy');
+			expect(d.data.keywords.length).greaterThan(0);
 		}));
 });
