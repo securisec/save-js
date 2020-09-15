@@ -13,7 +13,7 @@ const s = new Save(host, apikey);
 const test_url = 'https://github.com/securisec/chepy';
 
 const resolvePath = (index) => {
-	return resolve(__dirname, `../../save-server/server/data/${index}.json`);
+	return resolve(__dirname, `../../save-server/server/data/backup/${index}.json`);
 };
 
 describe('Import data', () => {

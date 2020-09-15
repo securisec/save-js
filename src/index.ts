@@ -15,6 +15,7 @@ import {
 	OthersImportBody,
 	OtherExportRes,
 	OtherExactRes,
+	MiscContentResponse,
 } from './types/general';
 import {
 	BlogSearchResponse,
@@ -28,12 +29,20 @@ import {
 import {
 	ToolSearchCategoriesResponse,
 	ToolSearchResponse,
-	ToolsUpdateBody,
+	ToolsImportBody,
 	ToolAdd,
 	ToolExportRes,
 	ToolExactResponse,
 } from './types/tools';
 import { AuthResponse, AuthAllUsers, AuthCreateUserResp } from './types/auth';
+import {
+	ImageExactResponse,
+	ImageExportRes,
+	ImageImportBody,
+	ImageSearchCategoriesResponse,
+	ImageSearchResponse,
+	ImageUpdateBody,
+} from './types/images';
 
 export class Save {
 	private host: string;
@@ -200,6 +209,15 @@ export class Save {
 	};
 
 	/**
+	 *Get a random image
+	 *
+	 * @returns {Promise<ImageExactResponse>}
+	 */
+	imagesRandom = (): Promise<ImageExactResponse> => {
+		return this.makeRequest('/api/v1/index/images/random', 'get');
+	};
+
+	/**
 	 *Search tools by categories
 	 *
 	 * @param {{
@@ -213,6 +231,22 @@ export class Save {
 		data: CategoriesSearch
 	): Promise<ToolSearchCategoriesResponse> => {
 		return this.makeRequest('/api/v1/index/tools/categories', 'post', data);
+	};
+
+	/**
+	 *Search images by categories
+	 *
+	 * @param {{
+	 * 			fields: boolean;
+	 * 			limit: number;
+	 * 			filter: Array<string>;
+	 * 		}} data
+	 * @returns {Promise<ImageSearchCategoriesResponse>}
+	 */
+	imagesSearchCategories = (
+		data: CategoriesSearch
+	): Promise<ImageSearchCategoriesResponse> => {
+		return this.makeRequest('/api/v1/index/images/categories', 'post', data);
 	};
 
 	/**
@@ -231,6 +265,22 @@ export class Save {
 		fields?: ['name' | 'description' | 'categories' | 'similar'];
 	}): Promise<ToolSearchResponse> => {
 		return this.makeRequest('/api/v1/index/tools', 'post', data);
+	};
+
+	/**
+	 *Search images
+	 *
+	 * @param {({
+	 * 			query: string;
+	 * 			limit?: number;
+	 * 		})} data
+	 * @returns {Promise<ImageSearchResponse>}
+	 */
+	imagesSearch = (data: {
+		query: string;
+		limit?: number;
+	}): Promise<ImageSearchResponse> => {
+		return this.makeRequest('/api/v1/index/images', 'post', data);
 	};
 
 	/**
@@ -254,6 +304,15 @@ export class Save {
 	};
 
 	/**
+	 *Get all the images
+	 *
+	 * @returns {Promise<ImageSearchResponse>}
+	 */
+	imagesAll = (): Promise<ImageSearchResponse | number> => {
+		return this.makeRequest('/api/v1/index/images/all', 'get');
+	};
+
+	/**
 	 *Get all the categories and their counts
 	 *
 	 * @param {{
@@ -268,13 +327,32 @@ export class Save {
 	};
 
 	/**
+	 *Get all the categories and their counts
+	 *
+	 * @returns {(Promise<CategoriesResponse>)}
+	 */
+	imagesCategoriesByCount = (): Promise<CategoriesResponse | number> => {
+		return this.makeRequest('/api/v1/index/images/categories', 'get');
+	};
+
+	/**
 	 *Import tools into the backend. ***This does not update an individual tool***
 	 *
-	 * @param {ToolsUpdateBody} data
+	 * @param {ToolsImportBody} data
 	 * @returns {Promise<ResponseConstant>}
 	 */
-	toolsImport = (data: ToolsUpdateBody): Promise<ResponseConstant> => {
+	toolsImport = (data: ToolsImportBody): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/index/tools/import', 'put', data);
+	};
+
+	/**
+	 *Import images into the backend.
+	 *
+	 * @param {ImageImportBody} data
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	imagesImport = (data: ImageImportBody): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index/images/import', 'put', data);
 	};
 
 	/**
@@ -287,6 +365,15 @@ export class Save {
 	};
 
 	/**
+	 *Export all images as an importable dataset
+	 *
+	 * @returns {Promise<ImageExportRes>}
+	 */
+	imagesExport = (): Promise<ImageExportRes> => {
+		return this.makeRequest('/api/v1/index/images/export', 'get', {}, {});
+	};
+
+	/**
 	 *Get latest tools
 	 *
 	 * @param {{ limit: number }} [query] Request latest x number of tools
@@ -294,6 +381,16 @@ export class Save {
 	 */
 	toolsLatest = (query?: { limit: number }): Promise<ToolSearchResponse> => {
 		return this.makeRequest('/api/v1/index/tools', 'get', {}, query);
+	};
+
+	/**
+	 *Get latest images
+	 *
+	 * @param {{ limit: number }} [query] Request latest x number of images
+	 * @returns {Promise<ImageSearchResponse>}
+	 */
+	imagesLatest = (query?: { limit: number }): Promise<ImageSearchResponse> => {
+		return this.makeRequest('/api/v1/index/images', 'get', {}, query);
 	};
 
 	/**
@@ -475,6 +572,15 @@ export class Save {
 	};
 
 	/**
+	 *Get all favorites
+	 *
+	 * @returns {Promise<ImageSearchResponse>}
+	 */
+	imagesGetFavorites = (): Promise<ImageSearchResponse> => {
+		return this.makeRequest('/api/v1/index/images/favorites', 'get');
+	};
+
+	/**
 	 *Add a favorite
 	 *
 	 * @param {string} url A valid URL
@@ -487,6 +593,18 @@ export class Save {
 	};
 
 	/**
+	 *Add a favorite
+	 *
+	 * @param {string} id A valid image id
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	imagesAddFavorite = (id: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index/images/favorites', 'post', {
+			id: id,
+		});
+	};
+
+	/**
 	 *Delete a favorite
 	 *
 	 * @param {string} url A valid URL
@@ -495,6 +613,18 @@ export class Save {
 	toolsDeleteFavorite = (url: string): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/index/tools/favorites', 'delete', {
 			url: url,
+		});
+	};
+
+	/**
+	 *Delete a favorite
+	 *
+	 * @param {string} id A valid image id
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	imagesDeleteFavorite = (id: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index/images/favorites', 'delete', {
+			id: id,
 		});
 	};
 
@@ -735,6 +865,58 @@ export class Save {
 	};
 
 	/**
+	 *Upload an image from a URL
+	 *
+	 * @param {string} url a valid image url
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	imageUploadFromURL = (url: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index/images/upload/url', 'put', {
+			url: url,
+		});
+	};
+
+	imageUploadFromFile = (file_path: string) => {
+		// TODO
+		console.log('Not implemented', file_path);
+		return;
+	};
+
+	/**
+	 *Update info about an image
+	 *
+	 * @param {string} id a valid image id
+	 * @param {ImageUpdateBody} body data to update
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	imageUpdate = (
+		id: string,
+		body: ImageUpdateBody
+	): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index/images/' + id, 'post', body);
+	};
+
+	/**
+	 *Delete an image
+	 *
+	 * @param {string} id a valid image id
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	imageDelete = (id: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index/images/' + id, 'delete');
+	};
+
+	/**
+	 *Get an image
+	 *
+	 * @param {string} id a valid image id
+	 * @returns {Promise<ResponseConstant>}
+	 */
+	imageGet = (id: string): Promise<ResponseConstant> => {
+		return this.makeRequest('/api/v1/index/images/' + id, 'get');
+	};
+
+	/**
 	 *Basic HEAD based health check for a url
 	 *
 	 * @param {string} url URL to check
@@ -742,5 +924,15 @@ export class Save {
 	 */
 	miscHealthCheck = (url: string): Promise<ResponseConstant> => {
 		return this.makeRequest('/api/v1/misc/health', 'post', { url: url });
+	};
+
+	/**
+	 *Get reader mode content for a URL
+	 *
+	 * @param {string} url a valid url
+	 * @returns {Promise<MiscContentResponse>}
+	 */
+	miscGetContent = (url: string): Promise<MiscContentResponse> => {
+		return this.makeRequest('/api/v1/misc/content', 'post', { url: url });
 	};
 }

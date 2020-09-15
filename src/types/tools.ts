@@ -31,7 +31,7 @@ export interface ToolSearchCategoriesResponse extends ToolSearchResponse {
 	fields: Array<string>;
 }
 
-export interface ToolsUpdateBody {
+export interface ToolsImportBody {
 	data: Array<Tool>;
 	count: number;
 	time_saved: number;

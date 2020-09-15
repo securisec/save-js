@@ -110,3 +110,12 @@ export interface OtherExactRes extends ResponseConstant {
 }
 
 export interface OtherExportRes extends ResponseConstant, OtherResponse {}
+
+export interface MiscContentResponse extends ResponseConstant {
+	data: {
+		content: string;
+		text: string;
+		title: string;
+		image: string;
+	};
+}
